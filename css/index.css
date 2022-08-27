@@ -11,6 +11,7 @@
 html{
 	font-size: 62.5%;
 	box-sizing: border-box;
+	scroll-snap-type: y mandatory;
 }
 *, *:before, *:after{
 	box-sizing: inherit;
@@ -50,6 +51,14 @@ p{
 }
 .spn-1{
 	font-size: 4rem;
+}
+/*Sombras*/
+.Sombra{
+	-webkit-box-shadow: 17px 4px 7px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 17px 4px 7px 0px rgba(0,0,0,0.75);
+	box-shadow: 17px 4px 7px 0px rgba(0,0,0,0.75);
+	background-color: var(--Blanco);
+	border-radius: 2rem;
 }
 /*Navegacion*/
 .Contenedor{
@@ -140,6 +149,7 @@ a:focus{
 	background-size: cover;
 	height: 30rem; /* 1rem = 10px*/
 	position: relative; /* Padre */
+	margin-bottom: 2rem;
 }
 .Dev-hero{
 	position: absolute; /* Hijo*/
@@ -155,4 +165,12 @@ a:focus{
 .Dev-hero h2,
 .Dev-hero span{
 	color: var(--Blanco);
+}
+.MyU{
+	font-weight: bold;
+}
+.Footer{
+	text-align: center;
+	scroll-snap-align: center;
+	scroll-snap-stop: always;
 }

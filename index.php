@@ -30,10 +30,10 @@
 </svg> <!--- SVG Laptop acompañante del titulo --->
     </div>
     </section>
-    <main class="Contenedor">
+    <main class="Contenedor Sombra">
     <div class="Q-y-Q">
         <div class="Que-es-mr">
-            <h2>MR360web</h2>
+            <h2 id="MR360web">MR360web</h2>
             <p> Es un pequeño negocio que se dedica a la creacion,
                 desarollo y mantenimientos a sitios web, tambien 
                 nos dedicamos a administrar las redes sociales de los 
@@ -42,33 +42,59 @@
             </p>
         </div>
         <div class="Quien-soy">
-            <h2>¿Quien soy?</h2>
+            <h2 id="¿Quien soy">¿Quien soy?</h2>
             <p>Hola me presento mi nombre es "Marco Antonio" y soy el creador de MR360web y el que se encargara de desarrolar
-               tu pagina web.
+               tu pagina web o bien de darle mantenimientos.
             </p>
         </div>
     </div>
     <div class="E-y-P">
         <div class="Estudios">
-          <h2>Estudios</h2>
-          <p>Actualmente estoy estudiando la carrera de "Ingeneria en Sistemas" y tengo un titulo en Informatica y Certificaciones</p>
+          <h2 id="Estudios">Estudios</h2>
+          <p>Actualmente estoy estudiando la carrera de "Ingeneria en Sistemas" y tengo un titulo en Informatica y Certificaciones de <span class="MyU">"Microsoft y Udemy"</span></p>
         </div>
         <div class="Precios">
-          <h2>Precios</h2>
-          <p>Los precios dependeran del proyectos que tu desees
+          <h2 id="Precios">Precios</h2>
+          <p>Los precios dependeran del proyectos que tu desees,
             si es asite invito a que tepongas en contacto con migo 
             para poider darte el mejor precio posible dependiendo de 
-            tu proyecto
+            tu proyecto, 
+            <span class="MyU">
+              "Esta pagina es la prueba de lo que se 
+              puede hacer con esfuerzo y con los 
+              conocimientos corectos.
+            </span>
+            <span>Ya que esta pagina no utiliza ningun
+            </span>
+            <span class="MyU">
+              "Framework"
+            </span>
+            <span>
+            como lo es
+            </span>
+            <span class="MyU">
+            Boostrap o CssNative,
+            </span>
+            <span>
+            el unico que se utiliza es 
+            </span>
+            <span class="MyU">
+            Normalize para "Normalizar"
+            </span>
           </p>
         </div>
     </div>
+    </main> <!--- .contenedor --->
     <div class="Conct">
         <div class="Contacto">
-          <h2>Contacto</h2>
+          <h2 id="Contacto">Contacto</h2>
           <a class="Boton" href="mailto:marcorulfo100@gmail.com?body=Hola%20Marco%2C%20quisiera%20saber%20m%C3%A1s%20informaci%C3%B3n%20acerca%20del%20desarrollo%20web%20de%20un%20sitio%F0%9F%98%8A%F0%9F%92%BB">Email</a>
           <a class="Boton" href="https://wa.me/525531083353?text=Hola,%20quiero%20mas%20información%20hacerca%20de%20tus%20servicios%20de%20desarrollo%20web%20😊💻">Whats App</a>
         </div>
     </div>
-    </main> <!--- .contenedor --->
+    <Footer class="Footer">
+      <p>©Todos los derechos reservados para "Marco R.C." ©</p>
+      <p>©26/08/2022©</p>
+    </Footer>
 </body>
 </html>
