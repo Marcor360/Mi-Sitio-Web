@@ -97,7 +97,7 @@ p{
 	color: var(--Blanco);
 }
 /*Links*/
-.Certificaciones a:visited{
+.Active-red:visited{
 	color: var(--Rojo);
 }
 a{
