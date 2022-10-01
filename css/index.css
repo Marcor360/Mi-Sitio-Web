@@ -198,9 +198,9 @@ a:focus {
         width: 30%;
     }
 }
+/*media-queries-Imagen-cer*/
 
-
-/*imagenes*/
+/*imagenes de fondo titulo*/
 
 .hero {
     background-image: url(../img/Mesa-1.jpg);
@@ -288,3 +288,5 @@ a:focus {
 .Dev-hero-3 span {
     color: var(--Blanco);
 }
+/*Imagenes*/
+
