@@ -198,10 +198,6 @@ a:focus {
         width: 30%;
     }
 }
-/*media-queries-Imagen-cer*/
-
-/*imagenes de fondo titulo*/
-
 .hero {
     background-image: url(../img/Mesa-1.jpg);
     background-repeat: no-repeat;
@@ -294,3 +290,4 @@ img{
     width: 100%;
     height: 0 auto;
 }
+/*pdf*/
