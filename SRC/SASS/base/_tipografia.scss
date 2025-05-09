@@ -1,0 +1,84 @@
+/* 
+ * Tipografía
+ * Estilos para tipografía específica del sitio
+ */
+
+// Estilos para encabezados
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $fuente-principal;
+    margin: 0;
+    line-height: 1.2;
+}
+
+// Tamaños específicos para textos
+.texto-grande {
+    font-size: $texto-2xl;
+
+    @include tablet {
+        font-size: $texto-3xl;
+    }
+}
+
+.texto-mediano {
+    font-size: $texto-lg;
+
+    @include tablet {
+        font-size: $texto-xl;
+    }
+}
+
+.texto-pequeno {
+    font-size: $texto-sm;
+}
+
+// Pesos de fuente
+.fw-light {
+    font-weight: 300;
+}
+
+.fw-regular {
+    font-weight: 400;
+}
+
+.fw-medium {
+    font-weight: 500;
+}
+
+.fw-semibold {
+    font-weight: 600;
+}
+
+.fw-bold {
+    font-weight: 700;
+}
+
+// Alineación de texto
+.texto-centro {
+    text-align: center;
+}
+
+.texto-derecha {
+    text-align: right;
+}
+
+.texto-izquierda {
+    text-align: left;
+}
+
+// Transformación de texto
+.texto-mayusculas {
+    text-transform: uppercase;
+}
+
+.texto-minusculas {
+    text-transform: lowercase;
+}
+
+.texto-capitalizado {
+    text-transform: capitalize;
+}
