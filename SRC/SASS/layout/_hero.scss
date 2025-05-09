@@ -1,0 +1,103 @@
+/* 
+ * Hero / Presentación Personal
+ */
+
+.hero {
+    padding: $spacer-12 0;
+    background-color: $gris-claro;
+    overflow: hidden;
+
+    @include tablet {
+        padding: $spacer-16 0;
+    }
+
+    &__content {
+        @include flex(column, center, center);
+        gap: $spacer-8;
+
+        @include tablet {
+            @include flex(row, space-between, center);
+        }
+    }
+
+    &__text {
+        text-align: center;
+
+        @include tablet {
+            text-align: left;
+            flex: 1;
+            padding-right: $spacer-8;
+        }
+    }
+
+    &__title {
+        font-size: $texto-4xl;
+        font-weight: 700;
+        margin-bottom: $spacer-2;
+        color: $oscuro;
+
+        @include tablet {
+            font-size: $texto-5xl;
+        }
+
+        .highlight {
+            color: $primario;
+        }
+    }
+
+    &__subtitle {
+        font-size: $texto-xl;
+        font-weight: 500;
+        margin-bottom: $spacer-4;
+        color: $primario;
+
+        @include tablet {
+            font-size: $texto-2xl;
+        }
+    }
+
+    &__description {
+        font-size: $texto-base;
+        margin-bottom: $spacer-6;
+        color: $gris;
+        max-width: 500px;
+
+        @include tablet {
+            font-size: $texto-lg;
+        }
+    }
+
+    &__cta {
+        @include flex(column, center, center);
+        gap: $spacer-3;
+
+        @include telefono {
+            @include flex(row, center, center);
+            gap: $spacer-4;
+        }
+
+        @include tablet {
+            justify-content: flex-start;
+        }
+    }
+
+    &__image {
+        margin-top: $spacer-6;
+
+        @include tablet {
+            margin-top: 0;
+            flex: 1;
+        }
+
+        img {
+            max-width: 280px;
+            border-radius: 50%;
+            @include shadow('lg');
+            border: 5px solid $blanco;
+
+            @include tablet {
+                max-width: 350px;
+            }
+        }
+    }
+}

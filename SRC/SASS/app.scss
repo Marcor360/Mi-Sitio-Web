@@ -1,0 +1,25 @@
+/* 
+ * App.scss - Marco Antonio Rulfo Castro
+ * Archivo principal de estilos
+ */
+
+// Base
+@import 'base/variables';
+@import 'base/mixins';
+@import 'base/normalize';
+@import 'base/globales';
+@import 'base/tipografia';
+@import 'base/utilidades';
+
+// Layout
+@import 'layout/header';
+@import 'layout/navegacion';
+@import 'layout/hero';
+@import 'layout/about';
+@import 'layout/certifications';
+@import 'layout/skills';
+@import 'layout/contact';
+@import 'layout/footer';
+
+// Media Queries
+@import 'base/mediaqueries';

@@ -1,0 +1,82 @@
+/* 
+ * Navegación
+ */
+
+.header__nav {
+    display: none; // Oculto en móvil por defecto
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba($blanco, 0.95);
+    z-index: 100;
+
+    &.active {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @include tablet {
+        display: block;
+        position: static;
+        background-color: transparent;
+    }
+
+    .nav__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        @include telefono {
+            @include flex(column, center, center);
+            gap: $spacer-6;
+        }
+
+        @include tablet {
+            @include flex(row, flex-end, center);
+            gap: $spacer-4;
+        }
+    }
+
+    .nav__item {
+        margin-bottom: $spacer-4;
+
+        @include tablet {
+            margin-bottom: 0;
+        }
+    }
+
+    .nav__link {
+        color: $oscuro;
+        text-decoration: none;
+        font-size: $texto-xl;
+        font-weight: 500;
+        padding: $spacer-1 $spacer-2;
+        position: relative;
+        @include transition;
+
+        @include tablet {
+            font-size: $texto-base;
+
+            &::after {
+                @include pseudo;
+                bottom: -2px;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background-color: $primario;
+                @include transition;
+            }
+
+            &:hover {
+                color: $primario;
+
+                &::after {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

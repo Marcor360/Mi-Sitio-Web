@@ -1,0 +1,55 @@
+/* 
+ * Media Queries
+ * 
+ * Nota: La mayoría de los media queries específicos están incluidos en los archivos de cada componente,
+ * utilizando los mixins definidos en _mixins.scss. Este archivo incluye ajustes adicionales generales.
+ */
+
+// Ajustes adicionales para teléfonos pequeños
+@media (max-width: 360px) {
+    html {
+        font-size: 55%; // Reducción de tamaño base para pantallas muy pequeñas
+    }
+    
+    .hero__title {
+        font-size: $texto-3xl;
+    }
+    
+    .hero__subtitle {
+        font-size: $texto-lg;
+    }
+    
+    .cert__card {
+        padding: $spacer-4;
+    }
+}
+
+// Ajustes para tablets en orientación landscape
+@media (min-width: 768px) and (max-width: 1023px) {
+    .certifications__grid {
+        @include grid(2, $spacer-6);
+    }
+    
+    .contact__content {
+        flex-direction: column;
+    }
+}
+
+// Ajustes para pantallas grandes
+@media (min-width: 1440px) {
+    html {
+        font-size: 70%; // Incremento del tamaño base para pantallas grandes
+    }
+    
+    .container {
+        max-width: 1320px;
+    }
+    
+    .hero {
+        padding: $spacer-20 0;
+    }
+    
+    .section__title {
+        margin-bottom: $spacer-16;
+    }
+}

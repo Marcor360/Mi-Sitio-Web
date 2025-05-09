@@ -1,0 +1,62 @@
+/* 
+ * Variables
+ */
+
+// Colores
+$primario: #4D61FC; // Azul principal
+$secundario: #30D780; // Verde complementario
+$oscuro: #232946; // Azul oscuro para texto
+$gris: #6B7280; // Gris para textos secundarios
+$gris-claro: #F3F4F6; // Gris claro para fondos
+$blanco: #FFFFFF;
+$negro: #111827;
+
+// Tipografía
+$fuente-principal: 'Poppins', sans-serif;
+
+// Tamaños de fuente
+$texto-xs: 0.75rem; // 12px
+$texto-sm: 0.875rem; // 14px
+$texto-base: 1rem; // 16px
+$texto-lg: 1.125rem; // 18px
+$texto-xl: 1.25rem; // 20px
+$texto-2xl: 1.5rem; // 24px
+$texto-3xl: 1.875rem; // 30px
+$texto-4xl: 2.25rem; // 36px
+$texto-5xl: 3rem; // 48px
+
+// Spacing (para margenes y paddings)
+$spacer-1: 0.25rem; // 4px
+$spacer-2: 0.5rem; // 8px
+$spacer-3: 0.75rem; // 12px
+$spacer-4: 1rem; // 16px
+$spacer-5: 1.25rem; // 20px
+$spacer-6: 1.5rem; // 24px
+$spacer-8: 2rem; // 32px
+$spacer-10: 2.5rem; // 40px
+$spacer-12: 3rem; // 48px
+$spacer-16: 4rem; // 64px
+$spacer-20: 5rem; // 80px
+
+// Breakpoints para Media Queries
+$telefono: 480px;
+$tablet: 768px;
+$desktop: 1024px;
+$desktopXL: 1440px;
+
+// Container
+$container-padding: $spacer-4;
+$container-max-width: 1200px;
+
+// Border radius
+$radius-sm: 0.25rem; // 4px
+$radius-md: 0.375rem; // 6px
+$radius-lg: 0.5rem; // 8px
+$radius-xl: 1rem; // 16px
+$radius-full: 9999px; // Circular
+
+// Sombras
+$sombra-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$sombra: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+$sombra-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$sombra-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);

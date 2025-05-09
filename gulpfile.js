@@ -108,6 +108,41 @@ async function procesarImagenes(file, outputSubDir) {
     }
 }
 
+// Copiar archivos HTML
+export function html() {
+    return src('./index.html')
+        .pipe(dest('./'));
+}
+
+// Crear directorios necesarios
+export function crearDirectorios(done) {
+    const dirs = [
+        './build',
+        paths.build.css,
+        paths.build.js,
+        paths.build.img,
+        './src/scss',
+        './src/js',
+        './src/img'
+    ];
+
+    dirs.forEach(dir => {
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir, { recursive: true });
+        }
+    });
+
+    done();
+}
+
+// Eliminar la carpeta build
+export function limpiar(done) {
+    if (fs.existsSync('./build')) {
+        fs.rmSync('./build', { recursive: true, force: true });
+    }
+    done();
+}
+
 // Tareas de desarrollo: observar cambios
 export function dev() {
     watch(paths.src.scss, css);
@@ -115,10 +150,19 @@ export function dev() {
     watch([
         'src/img/**/*.{png,jpg,jpeg,gif,svg,webp}'
     ], imagenes);
+    watch('./index.html', html);
 }
+
+// Tarea de construcción: compila todos los activos
+export const build = series(
+    limpiar,
+    crearDirectorios,
+    parallel(css, js, imagenes, html)
+);
 
 // Tarea por defecto: ejecutar todo en paralelo y luego el modo desarrollo
 export default series(
-    parallel(js, css, imagenes),
+    crearDirectorios,
+    parallel(css, js, imagenes, html),
     dev
 );

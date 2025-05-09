@@ -1,0 +1,81 @@
+/* 
+ * Sobre Mí
+ */
+
+.about {
+    &__content {
+        @include flex(column, center, center);
+        gap: $spacer-8;
+
+        @include tablet {
+            @include flex(row, space-between, center);
+            gap: $spacer-12;
+        }
+    }
+
+    &__image {
+        @include tablet {
+            flex: 1;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: $radius-lg;
+            @include shadow('md');
+        }
+    }
+
+    &__text {
+        @include tablet {
+            flex: 1;
+        }
+
+        p {
+            font-size: $texto-base;
+            margin-bottom: $spacer-4;
+            color: $gris;
+            line-height: 1.8;
+
+            @include tablet {
+                font-size: $texto-lg;
+            }
+        }
+    }
+
+    &__info {
+        margin-top: $spacer-6;
+        @include flex(column, flex-start, flex-start);
+        gap: $spacer-4;
+
+        @include tablet {
+            @include flex(row, space-between, flex-start);
+            gap: $spacer-8;
+        }
+
+        .info__item {
+            @include tablet {
+                flex: 1;
+            }
+
+            h3 {
+                font-size: $texto-lg;
+                font-weight: 600;
+                color: $oscuro;
+                margin-bottom: $spacer-2;
+
+                @include tablet {
+                    font-size: $texto-xl;
+                }
+            }
+
+            p {
+                margin-bottom: $spacer-1;
+
+                &:last-child {
+                    font-size: $texto-sm;
+                    color: $primario;
+                }
+            }
+        }
+    }
+}

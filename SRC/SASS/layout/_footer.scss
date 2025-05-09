@@ -1,0 +1,54 @@
+/* 
+ * Footer
+ */
+
+.footer {
+    padding: $spacer-10 0;
+    background-color: $oscuro;
+
+    &__content {
+        @include flex(column, center, center);
+        gap: $spacer-6;
+        text-align: center;
+    }
+
+    &__logo {
+        h3 {
+            font-size: $texto-xl;
+            font-weight: 600;
+            color: $blanco;
+            margin: 0;
+        }
+    }
+
+    &__social {
+        @include flex(row, center, center);
+        gap: $spacer-4;
+        margin: $spacer-4 0;
+
+        a {
+            width: 40px;
+            height: 40px;
+            background-color: rgba($blanco, 0.1);
+            color: $blanco;
+            border-radius: $radius-full;
+            @include flex(row, center, center);
+            font-size: $texto-lg;
+            text-decoration: none;
+            @include transition;
+
+            &:hover {
+                background-color: $primario;
+                transform: translateY(-3px);
+            }
+        }
+    }
+
+    &__copyright {
+        p {
+            font-size: $texto-sm;
+            color: rgba($blanco, 0.6);
+            margin: 0;
+        }
+    }
+}

@@ -1,0 +1,70 @@
+/* 
+ * Certificaciones
+ */
+
+.certifications {
+    background-color: $gris-claro;
+
+    &__grid {
+        @include grid(1, $spacer-6);
+        margin-top: $spacer-8;
+
+        @include telefono {
+            @include grid(2, $spacer-6);
+        }
+
+        @include desktop {
+            @include grid(4, $spacer-6);
+        }
+    }
+
+    .cert__card {
+        background-color: $blanco;
+        padding: $spacer-6;
+        border-radius: $radius-lg;
+        @include shadow('sm');
+        text-align: center;
+        @include transition;
+
+        &:hover {
+            transform: translateY(-5px);
+            @include shadow('md');
+
+            .cert__icon {
+                background-color: $primario;
+                color: $blanco;
+            }
+        }
+
+        .cert__icon {
+            width: 64px;
+            height: 64px;
+            background-color: lighten($primario, 35%);
+            color: $primario;
+            margin: 0 auto $spacer-4;
+            border-radius: $radius-full;
+            @include flex(row, center, center);
+            font-size: $texto-2xl;
+            @include transition;
+        }
+
+        .cert__title {
+            font-size: $texto-lg;
+            font-weight: 600;
+            margin-bottom: $spacer-2;
+            color: $oscuro;
+        }
+
+        .cert__issuer {
+            font-size: $texto-sm;
+            color: $gris;
+            margin-bottom: $spacer-1;
+        }
+
+        .cert__date {
+            font-size: $texto-xs;
+            color: $primario;
+            font-weight: 500;
+        }
+    }
+}

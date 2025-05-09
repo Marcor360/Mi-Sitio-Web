@@ -1,0 +1,107 @@
+/* 
+ * Mixins
+ */
+
+// Media Queries
+@mixin telefono {
+    @media (min-width: $telefono) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: $tablet) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: $desktop) {
+        @content;
+    }
+}
+
+@mixin desktopXL {
+    @media (min-width: $desktopXL) {
+        @content;
+    }
+}
+
+// Flexbox
+@mixin flex($direction: row, $justify: flex-start, $align: stretch, $wrap: nowrap) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+    flex-wrap: $wrap;
+}
+
+// Grid
+@mixin grid($columns: 1, $gap: $spacer-4) {
+    display: grid;
+    grid-template-columns: repeat($columns, 1fr);
+    gap: $gap;
+}
+
+// Contenedor
+@mixin container {
+    width: 100%;
+    max-width: $container-max-width;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: $container-padding;
+    padding-right: $container-padding;
+}
+
+// Transiciones
+@mixin transition($property: all, $duration: 0.3s, $timing: ease) {
+    transition-property: $property;
+    transition-duration: $duration;
+    transition-timing-function: $timing;
+}
+
+// Pseudo-elemento after/before
+@mixin pseudo($display: block, $pos: absolute, $content: '') {
+    content: $content;
+    display: $display;
+    position: $pos;
+}
+
+// Botones
+@mixin button($bg-color, $text-color, $hover-bg: darken($bg-color, 10%), $hover-text: $text-color) {
+    display: inline-block;
+    background-color: $bg-color;
+    color: $text-color;
+    padding: $spacer-3 $spacer-6;
+    border-radius: $radius-md;
+    text-decoration: none;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    @include transition;
+
+    &:hover {
+        background-color: $hover-bg;
+        color: $hover-text;
+    }
+}
+
+// Sombras
+@mixin shadow($level: 'md') {
+    @if $level =='sm' {
+        box-shadow: $sombra-sm;
+    }
+
+    @else if $level =='md' {
+        box-shadow: $sombra-md;
+    }
+
+    @else if $level =='lg' {
+        box-shadow: $sombra-lg;
+    }
+
+    @else {
+        box-shadow: $sombra;
+    }
+}

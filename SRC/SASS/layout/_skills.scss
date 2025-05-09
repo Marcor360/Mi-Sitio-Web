@@ -1,0 +1,85 @@
+/* 
+ * Habilidades
+ */
+
+.skills {
+    &__content {
+        @include flex(column, flex-start, stretch);
+        gap: $spacer-10;
+        margin-top: $spacer-8;
+    }
+
+    &__group {
+        @include tablet {
+            padding: 0 $spacer-4;
+        }
+    }
+
+    &__subtitle {
+        font-size: $texto-xl;
+        font-weight: 600;
+        margin-bottom: $spacer-6;
+        color: $oscuro;
+        position: relative;
+        padding-left: $spacer-4;
+
+        &::before {
+            @include pseudo;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background-color: $primario;
+            border-radius: $radius-full;
+        }
+    }
+
+    &__grid {
+        @include flex(column, flex-start, stretch);
+        gap: $spacer-6;
+    }
+
+    .skill__item {
+        @include flex(column, flex-start, stretch);
+        gap: $spacer-2;
+    }
+
+    .skill__name {
+        font-size: $texto-base;
+        font-weight: 500;
+        color: $oscuro;
+        margin-bottom: $spacer-1;
+        display: flex;
+        justify-content: space-between;
+
+        &::after {
+            content: attr(data-level);
+            font-size: $texto-sm;
+            color: $gris;
+        }
+    }
+
+    .skill__bar {
+        height: 8px;
+        background-color: lighten($gris, 30%);
+        border-radius: $radius-full;
+        overflow: hidden;
+    }
+
+    .skill__progress {
+        height: 100%;
+        background-color: $primario;
+        border-radius: $radius-full;
+        width: 0;
+        @include transition(width, 1s, ease-out);
+
+        // Diferentes colores para variedad visual
+        &--alt1 {
+            background-color: $secundario;
+        }
+
+        &--alt2 {
+            background-color: #FF6B6B; // Rojo-coral
+        }
+    }
+}

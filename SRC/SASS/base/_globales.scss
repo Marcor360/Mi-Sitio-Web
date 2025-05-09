@@ -1,0 +1,79 @@
+/* 
+ * Estilos globales
+ */
+
+html {
+    font-size: 62.5%; // 1rem = 10px
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: $fuente-principal;
+    font-size: $texto-base;
+    color: $oscuro;
+    line-height: 1.5;
+    background-color: $blanco;
+}
+
+.container {
+    @include container;
+}
+
+section {
+    padding: $spacer-16 0;
+
+    @include tablet {
+        padding: $spacer-20 0;
+    }
+}
+
+.section__title {
+    font-size: $texto-3xl;
+    margin-bottom: $spacer-8;
+    text-align: center;
+    color: $oscuro;
+    font-weight: 600;
+    position: relative;
+
+    @include tablet {
+        font-size: $texto-4xl;
+        margin-bottom: $spacer-12;
+    }
+
+    &::after {
+        @include pseudo;
+        bottom: -$spacer-2;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background-color: $primario;
+        border-radius: $radius-full;
+    }
+}
+
+// Botones
+.btn {
+    display: inline-block;
+    padding: $spacer-3 $spacer-6;
+    border-radius: $radius-md;
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    @include transition;
+
+    &--primary {
+        @include button($primario, $blanco);
+    }
+
+    &--secondary {
+        @include button(transparent, $oscuro);
+        border: 2px solid $oscuro;
+
+        &:hover {
+            background-color: $oscuro;
+            color: $blanco;
+        }
+    }
+}
