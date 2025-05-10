@@ -16,11 +16,12 @@
 @import 'layout/navegacion';
 @import 'layout/hero';
 @import 'layout/about';
+@import 'layout/experience'; // Archivo para experiencia
 @import 'layout/certifications';
 @import 'layout/skills';
 @import 'layout/contact';
 @import 'layout/footer';
-@import 'layout/modal';
+@import 'layout/modal'; // Modal para detalles de experiencia
 
 // Media Queries
 @import 'base/mediaqueries';

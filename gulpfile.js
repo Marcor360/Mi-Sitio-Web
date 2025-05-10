@@ -17,12 +17,14 @@ const paths = {
     src: {
         scss: 'src/scss/**/*.scss',
         js: 'src/js/**/*.js',
-        img: 'src/img/**/*'
+        img: 'src/img/**/*',
+        data: 'src/data/**/*.json'  // Añadido para archivos JSON
     },
     build: {
         css: './build/css',
         js: './build/js',
-        img: './build/img'
+        img: './build/img',
+        data: './build/data'  // Añadido para archivos JSON
     }
 };
 
@@ -114,6 +116,12 @@ export function html() {
         .pipe(dest('./'));
 }
 
+// Copiar archivos JSON
+export function copiarJSON() {
+    return src(paths.src.data)
+        .pipe(dest(paths.build.data));
+}
+
 // Crear directorios necesarios
 export function crearDirectorios(done) {
     const dirs = [
@@ -121,9 +129,11 @@ export function crearDirectorios(done) {
         paths.build.css,
         paths.build.js,
         paths.build.img,
+        paths.build.data,  // Añadido directorio para datos
         './src/scss',
         './src/js',
-        './src/img'
+        './src/img',
+        './src/data'       // Añadido directorio para datos
     ];
 
     dirs.forEach(dir => {
@@ -147,6 +157,7 @@ export function limpiar(done) {
 export function dev() {
     watch(paths.src.scss, css);
     watch(paths.src.js, js);
+    watch(paths.src.data, copiarJSON);  // Observar cambios en archivos JSON
     watch([
         'src/img/**/*.{png,jpg,jpeg,gif,svg,webp}'
     ], imagenes);
@@ -157,12 +168,12 @@ export function dev() {
 export const build = series(
     limpiar,
     crearDirectorios,
-    parallel(css, js, imagenes, html)
+    parallel(css, js, imagenes, html, copiarJSON)  // Añade copiarJSON
 );
 
 // Tarea por defecto: ejecutar todo en paralelo y luego el modo desarrollo
 export default series(
     crearDirectorios,
-    parallel(css, js, imagenes, html),
+    parallel(css, js, imagenes, html, copiarJSON),  // Añade copiarJSON
     dev
 );

@@ -1,5 +1,6 @@
 /**
- * Archivo principal de JavaScript con carga dinámica de certificados desde JSON
+ * Archivo principal de JavaScript
+ * Marco Antonio Rulfo Castro - Portafolio Web
  */
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -9,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const navLinks = document.querySelectorAll('.nav__link');
     const skillBars = document.querySelectorAll('.skill__progress');
     const contactForm = document.getElementById('contactForm');
+    const certificationsGrid = document.querySelector('.certifications__grid');
 
     // Toggle del menú móvil
     if (menuToggle && headerNav) {
@@ -96,24 +98,72 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Efecto hover para las tarjetas de experiencia
+    const experienceCards = document.querySelectorAll('.experience__card');
+    if (experienceCards.length > 0) {
+        experienceCards.forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                card.style.transform = 'translateY(-5px)';
+            });
+
+            card.addEventListener('mouseleave', function () {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    }
+
     /**
-     * Funcionalidad de Modal para Certificaciones con carga desde JSON
+     * Funcionalidad para cargar certificaciones
      */
 
-    // Elementos del DOM para el modal
-    const modal = document.getElementById('certificateModal');
-    const modalTitle = document.getElementById('modalTitle');
-    const certificateViewer = document.getElementById('certificateViewer');
-    const certificateImage = document.getElementById('certificateImage');
-    const downloadBtn = document.getElementById('downloadCertificate');
-    const closeBtn = document.querySelector('.modal__close');
-    const certificationsGrid = document.querySelector('.certifications__grid');
-
-    // Objeto para almacenar los certificados cargados desde el JSON
-    let certificados = {};
+    // Certificados de respaldo en caso de que falle la carga del JSON
+    const certificadosRespaldo = [
+        {
+            id: "etica-uso-responsable-datos",
+            title: "Ética: Uso Responsable de Datos",
+            issuer: "Universidad Tres Culturas",
+            date: "Abril 2025",
+            icon: "fa-solid fa-shield-alt",
+            url: "https://acreditta.com/credential/cf9e73af-9248-4fb5-8a17-429d3b848844",
+            description: "Cuentas con habilidades para identificar sesgos, tomar decisiones informadas y aplicar principios éticos en el uso de inteligencia artificial, machine learning y la recolección responsable de datos.",
+            tags: ["Data Science", "Inteligencia Artificial", "Análisis de datos"]
+        },
+        {
+            id: "bases-conceptos-ia",
+            title: "Bases y conceptos clave de la IA",
+            issuer: "Universidad Tres Culturas",
+            date: "Marzo 2025",
+            icon: "fa-solid fa-robot",
+            url: "https://acreditta.com/credential/04615b1d-713e-423a-aabd-040dee2d62d6",
+            description: "Este certificado acredita que el participante ha adquirido conocimientos sobre los principios fundamentales de la inteligencia artificial, incluyendo sus conceptos clave, historia, algoritmos básicos y aplicaciones.",
+            tags: ["Inteligencia Artificial"]
+        },
+        {
+            id: "fundamentos-analisis-datos",
+            title: "Fundamentos del Análisis de Datos",
+            issuer: "Universidad Tres Culturas",
+            date: "Abril 2025",
+            icon: "fa-solid fa-chart-line",
+            url: "https://acreditta.com/credential/5ee14805-b071-4e3e-be0d-598db546d2f2",
+            description: "Cuentas conocimientos esenciales en análisis de datos, abarcando su evolución, metodologías y aplicaciones. Acredita competencias en investigación cualitativa y cuantitativa, diseño de proyectos de análisis y procesamiento de datos.",
+            tags: ["Inteligencia Artificial", "Análisis de datos"]
+        },
+        {
+            id: "principios-data-science",
+            title: "Principios de Data Science",
+            issuer: "Universidad Tres Culturas",
+            date: "Abril 2025",
+            icon: "fa-solid fa-database",
+            url: "https://acreditta.com/credential/2deb534f-8cca-4989-8209-17bd93bcaae5",
+            description: "Cuentas con los conocimientos fundamentales sobre adquisición, limpieza y análisis exploratorio de datos, así como principios de estadística y probabilidad. Este curso proporciona una base sólida para la interpretación y modelado de datos.",
+            tags: ["Data Science", "Inteligencia Artificial", "Análisis de datos"]
+        }
+    ];
 
     // Función para cargar certificados desde JSON
     function cargarCertificados() {
+        if (!certificationsGrid) return;
+
         fetch('build/data/certificates.json')
             .then(response => {
                 if (!response.ok) {
@@ -122,238 +172,340 @@ document.addEventListener('DOMContentLoaded', function () {
                 return response.json();
             })
             .then(data => {
-                // Crear un objeto de certificados para acceso rápido por ID
-                data.certificates.forEach(cert => {
-                    certificados[cert.id] = cert;
-                });
-
-                // Generar HTML para las tarjetas de certificación
-                if (certificationsGrid) {
-                    certificationsGrid.innerHTML = ''; // Limpiar contenido existente
-
-                    data.certificates.forEach(cert => {
-                        const cardHTML = `
-                            <div class="cert__card" data-cert="${cert.id}">
-                                <div class="cert__icon">
-                                    <i class="${cert.icon}"></i>
-                                </div>
-                                <h3 class="cert__title">${cert.title}</h3>
-                                <p class="cert__issuer">${cert.issuer}</p>
-                                <p class="cert__date">${cert.date}</p>
-                                <div class="cert__view">
-                                    <i class="fa-solid fa-magnifying-glass-plus"></i> Ver certificado completo
-                                </div>
-                            </div>
-                        `;
-
-                        certificationsGrid.innerHTML += cardHTML;
-                    });
-
-                    // Una vez generadas las tarjetas, añadir los event listeners
-                    configurarTarjetasCertificados();
-                }
+                renderizarCertificados(data.certificates);
             })
             .catch(error => {
                 console.error('Error cargando los certificados:', error);
-                // Si hay un error cargando el JSON, usa los certificados predefinidos
-                usarCertificadosPredefinidos();
+                // Si hay un error, usar certificados de respaldo
+                renderizarCertificados(certificadosRespaldo);
             });
     }
 
-    // Función de respaldo para usar certificados predefinidos si no se puede cargar el JSON
-    function usarCertificadosPredefinidos() {
-        certificados = {
-            'react-fundamentals': {
-                title: 'React Fundamentals',
-                issuer: 'Meta (Facebook)',
-                file: 'build/certificates/react-fundamentals.pdf',
-                imageAlt: 'build/certificates/react-fundamentals.jpg'
-            },
-            'nodejs-backend': {
-                title: 'Node.js Backend Development',
-                issuer: 'Udemy',
-                file: 'build/certificates/nodejs-backend.pdf',
-                imageAlt: 'build/certificates/nodejs-backend.jpg'
-            },
-            'javascript-avanzado': {
-                title: 'JavaScript Avanzado',
-                issuer: 'Platzi',
-                file: 'build/certificates/javascript-avanzado.pdf',
-                imageAlt: 'build/certificates/javascript-avanzado.jpg'
-            },
-            'sql-database': {
-                title: 'SQL & Database Management',
-                issuer: 'SQL Academy',
-                file: 'build/certificates/sql-database.pdf',
-                imageAlt: 'build/certificates/sql-database.jpg'
-            },
-            'css-sass': {
-                title: 'CSS Avanzado y SASS',
-                issuer: 'Codecademy',
-                file: 'build/certificates/css-sass.pdf',
-                imageAlt: 'build/certificates/css-sass.jpg'
-            },
-            'git-github': {
-                title: 'Control de Versiones con Git',
-                issuer: 'GitHub Learning Lab',
-                file: 'build/certificates/git-github.pdf',
-                imageAlt: 'build/certificates/git-github.jpg'
+    // Función para renderizar los certificados en el DOM
+    function renderizarCertificados(certificados) {
+        if (!certificationsGrid) return;
+
+        certificationsGrid.innerHTML = ''; // Limpiar contenido existente
+
+        certificados.forEach(cert => {
+            // Crear HTML para las etiquetas
+            let tagsHTML = '';
+            if (cert.tags && cert.tags.length > 0) {
+                // Tomar solo las primeras 2 etiquetas para no sobrecargar visualmente
+                const displayTags = cert.tags.slice(0, 2);
+                tagsHTML = `
+                    <div class="cert__tags">
+                        ${displayTags.map(tag => `<span class="cert__tag">${tag}</span>`).join('')}
+                    </div>
+                `;
             }
-        };
 
-        // Usar los certificados predefinidos directamente con las tarjetas existentes
-        configurarTarjetasCertificados();
-    }
+            const cardHTML = `
+                <a href="${cert.url}" class="cert__card" target="_blank" rel="noopener noreferrer">
+                    <div class="cert__icon">
+                        <i class="${cert.icon}"></i>
+                    </div>
+                    <h3 class="cert__title">${cert.title}</h3>
+                    <p class="cert__issuer">${cert.issuer}</p>
+                    <p class="cert__date">${cert.date}</p>
+                    ${tagsHTML}
+                    <div class="cert__view">
+                        <i class="fa-solid fa-external-link-alt"></i> Ver certificado
+                    </div>
+                </a>
+            `;
 
-    // Función para configurar los event listeners de las tarjetas
-    function configurarTarjetasCertificados() {
+            certificationsGrid.innerHTML += cardHTML;
+        });
+
+        // Añadir efecto hover a los iconos
         const certCards = document.querySelectorAll('.cert__card');
-
-        if (certCards.length === 0) return;
-
-        // Event listeners para las tarjetas de certificación
         certCards.forEach(card => {
-            // Añadir un poco de animación al hacer hover en el ícono de lupa
-            const viewBtn = card.querySelector('.cert__view');
-            if (viewBtn) {
-                const icon = viewBtn.querySelector('i');
+            const viewEl = card.querySelector('.cert__view');
+            if (viewEl) {
+                const icon = viewEl.querySelector('i');
                 if (icon) {
-                    // Añadir un ligero efecto de pulsación al pasar el mouse
-                    icon.addEventListener('mouseenter', function () {
-                        this.style.transform = 'scale(1.2)';
+                    card.addEventListener('mouseenter', function () {
+                        icon.style.transform = 'translateX(3px)';
                     });
 
-                    icon.addEventListener('mouseleave', function () {
-                        this.style.transform = 'scale(1)';
+                    card.addEventListener('mouseleave', function () {
+                        icon.style.transform = 'translateX(0)';
                     });
                 }
             }
-
-            // Evento principal de clic en la tarjeta
-            card.addEventListener('click', function () {
-                const certId = this.getAttribute('data-cert');
-                openModal(certId);
-            });
-
-            // Añadir efecto visual al pasar el mouse
-            card.addEventListener('mouseenter', function () {
-                const viewBtn = this.querySelector('.cert__view');
-                if (viewBtn) {
-                    viewBtn.classList.add('active');
-                }
-            });
-
-            card.addEventListener('mouseleave', function () {
-                const viewBtn = this.querySelector('.cert__view');
-                if (viewBtn) {
-                    viewBtn.classList.remove('active');
-                }
-            });
         });
     }
 
-    // Comprobar si los elementos del modal existen en la página
-    if (modal && modalTitle && certificateViewer && certificateImage && downloadBtn && closeBtn) {
-        // Cargar los certificados desde el JSON
-        cargarCertificados();
+    // Iniciar la carga de certificados
+    cargarCertificados();
 
-        // Función para abrir el modal
-        function openModal(certId) {
-            if (certificados[certId]) {
-                const cert = certificados[certId];
+    /**
+     * Funcionalidad para el modal de detalles de experiencia
+     */
 
-                // Actualizar título
-                modalTitle.textContent = `${cert.title} - ${cert.issuer}`;
+    // Datos de experiencia para el modal
+    const experienciasData = [
+        {
+            id: 'becario-sistemas',
+            titulo: 'Becario de Sistemas',
+            empresa: 'USA SHOES',
+            fecha: 'Octubre 2023 - Febrero 2024',
+            descripcion: `
+                <p>Colaboré en la implementación y mantenimiento de sistemas informáticos, brindando soporte técnico a usuarios finales y participando en proyectos de desarrollo web con tecnologías modernas.</p>
+                <p>Realicé análisis de procesos empresariales para identificar oportunidades de mejora y automatización.</p>
+                <p>Trabajé con herramientas de gestión de inventario y sistemas ERP para optimizar procesos internos de la empresa.</p>
+            `,
+            habilidades: ['Soporte TI', 'HTML/CSS', 'JavaScript', 'SQL', 'Sistemas ERP']
+        },
+        {
+            id: 'soporte-ti',
+            titulo: 'Encargado de Soporte TI',
+            empresa: 'AICCA',
+            fecha: 'Junio 2022 - Julio 2023',
+            descripcion: `
+                <p>Lideré el área de soporte técnico, gestionando un equipo de 3 personas para garantizar el funcionamiento óptimo de la infraestructura informática de la empresa.</p>
+                <p>Implementé soluciones para mejorar la eficiencia operativa y reduje en un 30% el tiempo de resolución de incidencias.</p>
+                <p>Coordiné proyectos de actualización de hardware y software para mejorar la productividad empresarial.</p>
+            `,
+            habilidades: ['Gestión de equipos', 'Redes', 'Windows Server', 'Help Desk', 'Inventario TI']
+        },
+        {
+            id: 'desarrollador-web',
+            titulo: 'Desarrollador Web',
+            empresa: 'Freelance',
+            fecha: 'Enero 2022 - Presente',
+            descripcion: `
+                <p>Desarrollo de sitios web y aplicaciones personalizadas para diversos clientes, implementando soluciones responsivas y optimizadas para motores de búsqueda.</p>
+                <p>Creación de interfaces intuitivas centradas en la experiencia del usuario y el rendimiento.</p>
+                <p>Mantenimiento y actualización de aplicaciones existentes para garantizar su funcionamiento y seguridad.</p>
+            `,
+            habilidades: ['React', 'Node.js', 'PHP', 'SASS', 'Git', 'WordPress', 'SEO']
+        },
+        {
+            id: 'admin-sistemas',
+            titulo: 'Administrador de Sistemas',
+            empresa: 'Práctica Profesional',
+            fecha: 'Febrero 2022 - Mayo 2022',
+            descripcion: `
+                <p>Administración y configuración de sistemas de planificación de recursos empresariales para optimizar procesos de producción y gestión de inventario.</p>
+                <p>Capacitación de usuarios finales y desarrollo de documentación técnica para el uso eficiente del sistema.</p>
+                <p>Implementación de mejoras y solución de problemas para maximizar la eficiencia operativa.</p>
+            `,
+            habilidades: ['Sistemas ERP', 'SQL', 'Excel Avanzado', 'Capacitación', 'Documentación técnica']
+        }
+    ];
 
-                // Actualizar visor de PDF y alternativa de imagen
-                certificateViewer.setAttribute('data', cert.file);
-                certificateImage.setAttribute('src', cert.imageAlt);
-                certificateImage.setAttribute('alt', cert.title);
+    // Función para inicializar la funcionalidad del modal de experiencia
+    function initExperienceModals() {
+        // Crear el modal en el DOM si no existe
+        if (!document.getElementById('experienceModal')) {
+            const modalHTML = `
+                <div id="experienceModal" class="modal">
+                    <div class="modal__content">
+                        <span class="modal__close">&times;</span>
+                        <div class="modal__header">
+                            <h3 id="modalTitle" class="modal__title">Título del Puesto</h3>
+                            <p id="modalCompany" class="modal__company"></p>
+                            <p id="modalDate" class="modal__date"></p>
+                        </div>
+                        <div class="modal__body">
+                            <div id="modalDescription" class="modal__description"></div>
+                            <div class="modal__skills">
+                                <h4>Habilidades aplicadas</h4>
+                                <div id="modalSkills" class="modal__skills-tags"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
 
-                // Actualizar enlace de descarga
-                downloadBtn.setAttribute('href', cert.file);
-                downloadBtn.setAttribute('download', `${cert.title}.pdf`);
+            // Agregar el modal al final del documento
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+            // Estilos para el modal
+            const styleElement = document.createElement('style');
+            styleElement.textContent = `
+                .modal {
+                    display: none;
+                    position: fixed;
+                    z-index: 1000;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    overflow: auto;
+                    background-color: rgba(0,0,0,0.5);
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                }
+                
+                .modal.show {
+                    display: block;
+                    opacity: 1;
+                }
+                
+                .modal__content {
+                    background-color: #ffffff;
+                    margin: 10% auto;
+                    padding: 20px;
+                    border-radius: 8px;
+                    width: 80%;
+                    max-width: 600px;
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                    transform: scale(0.9);
+                    transition: transform 0.3s ease;
+                }
+                
+                .modal.show .modal__content {
+                    transform: scale(1);
+                }
+                
+                .modal__close {
+                    color: #aaaaaa;
+                    float: right;
+                    font-size: 28px;
+                    font-weight: bold;
+                    cursor: pointer;
+                }
+                
+                .modal__header {
+                    border-bottom: 1px solid #eeeeee;
+                    padding-bottom: 15px;
+                    margin-bottom: 15px;
+                }
+                
+                .modal__title {
+                    color: #232946;
+                    font-size: 24px;
+                    margin: 0 0 10px 0;
+                }
+                
+                .modal__company {
+                    font-size: 18px;
+                    color: #4D61FC;
+                    margin: 5px 0;
+                    font-weight: 500;
+                }
+                
+                .modal__date {
+                    font-size: 16px;
+                    color: #6B7280;
+                    margin: 5px 0;
+                }
+                
+                .modal__description p {
+                    margin-bottom: 15px;
+                    line-height: 1.6;
+                    color: #232946;
+                }
+                
+                .modal__skills {
+                    margin-top: 20px;
+                }
+                
+                .modal__skills h4 {
+                    font-size: 18px;
+                    margin-bottom: 10px;
+                    color: #232946;
+                }
+                
+                .modal__skills-tags {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 8px;
+                }
+                
+                .skill-tag {
+                    display: inline-block;
+                    background-color: rgba(77, 97, 252, 0.1);
+                    color: #4D61FC;
+                    padding: 5px 10px;
+                    border-radius: 4px;
+                    font-size: 14px;
+                    font-weight: 500;
+                }
+                
+                @media (max-width: 768px) {
+                    .modal__content {
+                        width: 90%;
+                        margin: 15% auto;
+                    }
+                    
+                    .modal__title {
+                        font-size: 20px;
+                    }
+                    
+                    .modal__company {
+                        font-size: 16px;
+                    }
+                }
+            `;
+            document.head.appendChild(styleElement);
+        }
+
+        // Referencias a elementos del modal
+        const modal = document.getElementById('experienceModal');
+        const modalClose = document.querySelector('.modal__close');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalCompany = document.getElementById('modalCompany');
+        const modalDate = document.getElementById('modalDate');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalSkills = document.getElementById('modalSkills');
+
+        // Agregar evento de click a todos los botones "Más detalles"
+        const expButtons = document.querySelectorAll('.experience__button');
+
+        expButtons.forEach((button, index) => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                // Obtener datos de la experiencia
+                const experiencia = experienciasData[index];
+
+                // Actualizar contenido del modal
+                modalTitle.textContent = experiencia.titulo;
+                modalCompany.textContent = experiencia.empresa;
+                modalDate.textContent = experiencia.fecha;
+                modalDescription.innerHTML = experiencia.descripcion;
+
+                // Actualizar habilidades
+                modalSkills.innerHTML = '';
+                experiencia.habilidades.forEach(skill => {
+                    const skillTag = document.createElement('span');
+                    skillTag.className = 'skill-tag';
+                    skillTag.textContent = skill;
+                    modalSkills.appendChild(skillTag);
+                });
 
                 // Mostrar modal con animación
                 modal.classList.add('show');
                 document.body.style.overflow = 'hidden'; // Evitar scroll en el fondo
-
-                // Efecto de zoom en el botón al abrir
-                const viewBtns = document.querySelectorAll('.cert__view');
-                viewBtns.forEach(btn => btn.classList.remove('active'));
-
-                // Mostrar mensaje temporal para informar que se puede cerrar haciendo clic fuera
-                setTimeout(() => {
-                    modal.classList.add('hint-visible');
-
-                    // Ocultar el mensaje después de 5 segundos
-                    setTimeout(() => {
-                        modal.classList.remove('hint-visible');
-                    }, 5000);
-                }, 1000);
-
-                // Detectar si el PDF carga correctamente
-                setTimeout(() => {
-                    try {
-                        if (certificateViewer.contentDocument && certificateViewer.contentDocument.body.childElementCount === 0) {
-                            // Si el PDF no carga, mostrar la imagen alternativa
-                            certificateViewer.style.display = 'none';
-                            document.querySelector('.certificate-fallback').style.display = 'flex';
-                        } else {
-                            certificateViewer.style.display = 'block';
-                            document.querySelector('.certificate-fallback').style.display = 'none';
-                        }
-                    } catch (error) {
-                        // Si hay un error de seguridad al acceder al contentDocument,
-                        // probablemente estamos cargando un PDF de otro dominio
-                        console.log('Usando visualizador de PDF embebido del navegador');
-                    }
-                }, 1000);
-            }
-        }
-
-        // Función para cerrar el modal con animación
-        function closeModal() {
-            // Primero añadir clase para animación de salida
-            modal.classList.add('closing');
-
-            // Esperar a que termine la animación
-            setTimeout(() => {
-                modal.classList.remove('show');
-                modal.classList.remove('closing');
-                modal.classList.remove('hint-visible');
-                document.body.style.overflow = 'auto'; // Restaurar scroll
-
-                // Limpiar contenido después de cerrar
-                setTimeout(() => {
-                    if (!modal.classList.contains('show')) {
-                        certificateViewer.setAttribute('data', '');
-                        certificateImage.setAttribute('src', '');
-                    }
-                }, 300);
-            }, 300);
-        }
+            });
+        });
 
         // Cerrar modal con el botón X
-        closeBtn.addEventListener('click', function (e) {
-            e.stopPropagation(); // Evitar que el clic se propague al modal
-            closeModal();
-        });
+        if (modalClose) {
+            modalClose.addEventListener('click', closeModal);
+        }
 
         // Cerrar modal al hacer clic fuera del contenido
-        modal.addEventListener('click', function (e) {
-            // Cerrar solo si se hizo clic fuera del contenido del modal
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-
-        // Evitar que el clic dentro del contenido cierre el modal
-        const modalContent = document.querySelector('.modal__content');
-        if (modalContent) {
-            modalContent.addEventListener('click', function (e) {
-                e.stopPropagation(); // Detener la propagación del clic
+        if (modal) {
+            modal.addEventListener('click', function (e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
             });
+        }
+
+        // Función para cerrar el modal
+        function closeModal() {
+            modal.classList.remove('show');
+            setTimeout(() => {
+                if (!modal.classList.contains('show')) {
+                    document.body.style.overflow = 'auto'; // Restaurar scroll
+                }
+            }, 300);
         }
 
         // Cerrar modal con la tecla ESC
@@ -362,16 +514,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 closeModal();
             }
         });
-
-        // Añadir efecto al botón de descarga
-        if (downloadBtn) {
-            downloadBtn.addEventListener('mouseenter', function () {
-                this.classList.add('btn--hover');
-            });
-
-            downloadBtn.addEventListener('mouseleave', function () {
-                this.classList.remove('btn--hover');
-            });
-        }
     }
+
+    // Inicializar todas las funcionalidades
+    initExperienceModals();
 });

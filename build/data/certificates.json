@@ -1,0 +1,57 @@
+{
+    "certificates": [
+        {
+            "id": "etica-uso-responsable-datos",
+            "title": "Ética: Uso Responsable de Datos",
+            "issuer": "Universidad Tres Culturas",
+            "date": "Abril 2025",
+            "icon": "fa-solid fa-shield-alt",
+            "url": "https://acreditta.com/credential/cf9e73af-9248-4fb5-8a17-429d3b848844",
+            "description": "Cuentas con habilidades para identificar sesgos, tomar decisiones informadas y aplicar principios éticos en el uso de inteligencia artificial, machine learning y la recolección responsable de datos.",
+            "tags": [
+                "Data Science",
+                "Inteligencia Artificial",
+                "Análisis de datos"
+            ]
+        },
+        {
+            "id": "bases-conceptos-ia",
+            "title": "Bases y conceptos clave de la IA",
+            "issuer": "Universidad Tres Culturas",
+            "date": "Marzo 2025",
+            "icon": "fa-solid fa-robot",
+            "url": "https://acreditta.com/credential/04615b1d-713e-423a-aabd-040dee2d62d6",
+            "description": "Este certificado acredita que el participante ha adquirido conocimientos sobre los principios fundamentales de la inteligencia artificial, incluyendo sus conceptos clave, historia, algoritmos básicos y aplicaciones.",
+            "tags": [
+                "Inteligencia Artificial"
+            ]
+        },
+        {
+            "id": "fundamentos-analisis-datos",
+            "title": "Fundamentos del Análisis de Datos",
+            "issuer": "Universidad Tres Culturas",
+            "date": "Abril 2025",
+            "icon": "fa-solid fa-chart-line",
+            "url": "https://acreditta.com/credential/5ee14805-b071-4e3e-be0d-598db546d2f2",
+            "description": "Cuentas conocimientos esenciales en análisis de datos, abarcando su evolución, metodologías y aplicaciones. Acredita competencias en investigación cualitativa y cuantitativa, diseño de proyectos de análisis y procesamiento de datos.",
+            "tags": [
+                "Inteligencia Artificial",
+                "Análisis de datos"
+            ]
+        },
+        {
+            "id": "principios-data-science",
+            "title": "Principios de Data Science",
+            "issuer": "Universidad Tres Culturas",
+            "date": "Abril 2025",
+            "icon": "fa-solid fa-database",
+            "url": "https://acreditta.com/credential/2deb534f-8cca-4989-8209-17bd93bcaae5",
+            "description": "Cuentas con los conocimientos fundamentales sobre adquisición, limpieza y análisis exploratorio de datos, así como principios de estadística y probabilidad. Este curso proporciona una base sólida para la interpretación y modelado de datos.",
+            "tags": [
+                "Data Science",
+                "Inteligencia Artificial",
+                "Análisis de datos"
+            ]
+        }
+    ]
+}

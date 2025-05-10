@@ -1,42 +1,7 @@
 /* 
- * Modal para Certificaciones
- * Archivo completo con todas las mejoras
+ * Estilos para el modal de detalles de experiencia
  */
 
-// Estilos para la tarjeta de certificación
-.cert__card {
-    cursor: pointer;
-    transition: all 0.3s ease;
-
-    &:hover {
-        transform: translateY(-10px);
-        box-shadow: $sombra-lg;
-    }
-
-    .cert__view {
-        margin-top: $spacer-4;
-        color: $primario;
-        font-weight: 500;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: $spacer-2;
-        opacity: 0.7;
-        transition: all 0.3s ease;
-
-        &.active,
-        &:hover {
-            opacity: 1;
-            transform: scale(1.05);
-        }
-
-        i {
-            font-size: $texto-sm;
-        }
-    }
-}
-
-// Modal base
 .modal {
     display: none;
     position: fixed;
@@ -46,238 +11,123 @@
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba($negro, 0.8);
+    background-color: rgba($negro, 0.5);
     opacity: 0;
     transition: opacity 0.3s ease;
-    cursor: pointer;
-    /* Cambiar el cursor para indicar que se puede hacer clic */
 
     &.show {
         display: block;
         opacity: 1;
     }
 
-    &.closing {
-        opacity: 0;
-        transition: opacity 0.3s ease;
+    &__content {
+        background-color: $blanco;
+        margin: 10% auto;
+        padding: $spacer-6;
+        border-radius: $radius-lg;
+        width: 80%;
+        max-width: 600px;
+        box-shadow: 0 5px 15px rgba($negro, 0.1);
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+
+        .show & {
+            transform: scale(1);
+        }
+
+        @include tablet {
+            padding: $spacer-8;
+        }
     }
-}
 
-.modal__content {
-    background-color: $blanco;
-    margin: 5% auto;
-    padding: 0;
-    width: 90%;
-    max-width: 800px;
-    border-radius: $radius-lg;
-    box-shadow: $sombra-lg;
-    position: relative;
-    transition: transform 0.3s ease;
-    transform: scale(0.9);
-    cursor: default;
-    /* Restaurar el cursor normal dentro del contenido */
+    &__close {
+        color: $gris;
+        float: right;
+        font-size: $texto-2xl;
+        font-weight: bold;
+        cursor: pointer;
 
-    .show & {
-        transform: scale(1);
+        &:hover {
+            color: $primario;
+        }
+    }
+
+    &__header {
+        border-bottom: 1px solid rgba($gris, 0.2);
+        padding-bottom: $spacer-4;
+        margin-bottom: $spacer-4;
+    }
+
+    &__title {
+        color: $oscuro;
+        font-size: $texto-2xl;
+        margin: 0 0 $spacer-2 0;
+        font-weight: 600;
+    }
+
+    &__company {
+        font-size: $texto-lg;
+        color: $primario;
+        margin: $spacer-1 0;
+        font-weight: 500;
+    }
+
+    &__date {
+        font-size: $texto-base;
+        color: $gris;
+        margin: $spacer-1 0;
+    }
+
+    &__description {
+        p {
+            margin-bottom: $spacer-4;
+            line-height: 1.6;
+            color: $oscuro;
+            font-size: $texto-base;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    &__skills {
+        margin-top: $spacer-6;
+
+        h4 {
+            font-size: $texto-lg;
+            margin-bottom: $spacer-2;
+            color: $oscuro;
+            font-weight: 600;
+        }
+    }
+
+    &__skills-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: $spacer-2;
+
+        .skill-tag {
+            display: inline-block;
+            background-color: rgba($primario, 0.1);
+            color: $primario;
+            padding: $spacer-1 $spacer-2;
+            border-radius: $radius-md;
+            font-size: $texto-sm;
+            font-weight: 500;
+        }
     }
 
     @include tablet {
-        margin: 10% auto;
-        width: 80%;
-    }
-}
-
-.modal__close {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    color: $oscuro;
-    font-size: $texto-2xl;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 100;
-    /* Mayor z-index para estar siempre visible */
-    height: 40px;
-    width: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background-color: rgba($blanco, 0.9);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: all 0.2s ease;
-
-    /* Hacer más visible el botón */
-    border: 2px solid $primario;
-
-    &:hover {
-        color: $blanco;
-        background-color: $primario;
-        transform: scale(1.1);
-    }
-
-    /* Animación sutil de pulsación al hacer clic */
-    &:active {
-        transform: scale(0.95);
-    }
-}
-
-.modal__header {
-    background-color: $primario;
-    color: $blanco;
-    padding: $spacer-4 $spacer-6;
-    border-top-left-radius: $radius-lg;
-    border-top-right-radius: $radius-lg;
-
-    h2 {
-        margin: 0;
-        font-size: $texto-xl;
-
-        @include tablet {
-            font-size: $texto-2xl;
-        }
-    }
-}
-
-.modal__body {
-    padding: $spacer-6;
-
-    .certificate-container {
-        width: 100%;
-        background-color: $gris-claro;
-        border-radius: $radius-md;
-        overflow: hidden;
-
-        object,
-        img {
-            width: 100%;
-            display: block;
-            border: 1px solid rgba($gris, 0.2);
+        &__content {
+            width: 70%;
         }
     }
 
-    .certificate-fallback {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: $spacer-4;
-        min-height: 500px;
-
-        img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
+    @include telefono {
+        &__content {
+            width: 90%;
+            margin: 15% auto;
         }
     }
-}
-
-/* Añadir estas líneas a tu archivo _modal.scss para el efecto del botón de descarga */
-
-.modal__footer {
-    .btn--hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .btn--primary {
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-
-        i {
-            transition: transform 0.3s ease;
-        }
-
-        &:hover i {
-            transform: translateY(-2px);
-        }
-    }
-}
-
-/* Overlay transparente para hacer más obvio que se puede hacer clic para cerrar */
-.modal::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: -1;
-}
-
-/* Añadir un mensaje sutil indicando que se puede cerrar haciendo clic fuera */
-.modal::after {
-    content: 'Haz clic en cualquier lugar para cerrar';
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 14px;
-    padding: 8px 16px;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 20px;
-    pointer-events: none;
-    /* Para que no interfiera con los clics */
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.modal.show::after {
-    opacity: 1;
-    transition-delay: 1s;
-    /* Mostrar después de un segundo */
-}
-
-.modal.hint-visible::after {
-    opacity: 1;
-}
-
-/* Estilos para dispositivos móviles */
-@media (max-width: $telefono) {
-    .modal__content {
-        width: 95%;
-        margin: 10% auto;
-    }
-
-    .modal__close {
-        top: 10px;
-        right: 10px;
-        height: 35px;
-        width: 35px;
-    }
-
-    .modal__body {
-        padding: $spacer-4;
-    }
-
-    .certificate-container {
-        min-height: 300px;
-    }
-
-    .modal::after {
-        bottom: 10px;
-        font-size: 12px;
-        padding: 6px 12px;
-    }
-}
-
-/* Animación de entrada para el contenido del modal */
-@keyframes modalEnter {
-    from {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-.show .modal__content {
-    animation: modalEnter 0.3s ease forwards;
 }
