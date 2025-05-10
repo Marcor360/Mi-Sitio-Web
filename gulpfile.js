@@ -12,19 +12,17 @@ import rename from 'gulp-rename';
 // Inicializar sass con dartSass (ya que node-sass está deprecado)
 const sass = gulpSass(dartSass);
 
-// Rutas centralizadas
+// Rutas centralizadas - MODIFICADAS para usar mayúsculas como en tu estructura real
 const paths = {
     src: {
-        scss: 'src/scss/**/*.scss',
-        js: 'src/js/**/*.js',
-        img: 'src/img/**/*',
-        data: 'src/data/**/*.json'  // Añadido para archivos JSON
+        scss: 'SRC/SASS/**/*.scss',
+        js: 'SRC/JS/**/*.js',
+        img: 'SRC/img/**/*'
     },
     build: {
         css: './build/css',
         js: './build/js',
-        img: './build/img',
-        data: './build/data'  // Añadido para archivos JSON
+        img: './build/img'
     }
 };
 
@@ -37,6 +35,7 @@ const imageOptions = {
 
 // Compilar SCSS a CSS
 export function css() {
+    console.log('Compilando SCSS a CSS...');
     return src(paths.src.scss, { sourcemaps: true })
         .pipe(sass({
             outputStyle: 'compressed'
@@ -46,6 +45,7 @@ export function css() {
 
 // Compilar JS
 export function js() {
+    console.log('Compilando JS...');
     return src(paths.src.js)
         .pipe(concat('bundle.js'))
         .pipe(terser())
@@ -55,7 +55,8 @@ export function js() {
 
 // Procesar imágenes
 export async function imagenes() {
-    const srcDir = './src/img';
+    console.log('Procesando imágenes...');
+    const srcDir = './SRC/img'; // Cambio a mayúsculas
     const buildDir = paths.build.img;
 
     try {
@@ -112,28 +113,22 @@ async function procesarImagenes(file, outputSubDir) {
 
 // Copiar archivos HTML
 export function html() {
+    console.log('Copiando HTML...');
     return src('./index.html')
         .pipe(dest('./'));
 }
 
-// Copiar archivos JSON
-export function copiarJSON() {
-    return src(paths.src.data)
-        .pipe(dest(paths.build.data));
-}
-
 // Crear directorios necesarios
 export function crearDirectorios(done) {
+    console.log('Creando directorios...');
     const dirs = [
         './build',
         paths.build.css,
         paths.build.js,
         paths.build.img,
-        paths.build.data,  // Añadido directorio para datos
-        './src/scss',
-        './src/js',
-        './src/img',
-        './src/data'       // Añadido directorio para datos
+        './SRC/SASS', // Cambiado a mayúsculas
+        './SRC/JS',   // Cambiado a mayúsculas
+        './SRC/img'   // Cambiado a mayúsculas
     ];
 
     dirs.forEach(dir => {
@@ -147,6 +142,7 @@ export function crearDirectorios(done) {
 
 // Eliminar la carpeta build
 export function limpiar(done) {
+    console.log('Limpiando carpeta build...');
     if (fs.existsSync('./build')) {
         fs.rmSync('./build', { recursive: true, force: true });
     }
@@ -155,11 +151,14 @@ export function limpiar(done) {
 
 // Tareas de desarrollo: observar cambios
 export function dev() {
+    console.log('Iniciando modo desarrollo...');
+    console.log('Escuchando cambios en:', paths.src.scss);
+    console.log('Escuchando cambios en:', paths.src.js);
+
     watch(paths.src.scss, css);
     watch(paths.src.js, js);
-    watch(paths.src.data, copiarJSON);  // Observar cambios en archivos JSON
     watch([
-        'src/img/**/*.{png,jpg,jpeg,gif,svg,webp}'
+        'SRC/img/**/*.{png,jpg,jpeg,gif,svg,webp}' // Cambiado a mayúsculas
     ], imagenes);
     watch('./index.html', html);
 }
@@ -168,12 +167,12 @@ export function dev() {
 export const build = series(
     limpiar,
     crearDirectorios,
-    parallel(css, js, imagenes, html, copiarJSON)  // Añade copiarJSON
+    parallel(css, js, imagenes, html)
 );
 
 // Tarea por defecto: ejecutar todo en paralelo y luego el modo desarrollo
 export default series(
     crearDirectorios,
-    parallel(css, js, imagenes, html, copiarJSON),  // Añade copiarJSON
+    parallel(css, js, imagenes, html),
     dev
 );
