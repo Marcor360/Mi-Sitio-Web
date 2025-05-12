@@ -516,6 +516,309 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    /**
+ * Generador de CV en PDF
+ */
+
+    // Primero, vamos a cargar jsPDF antes de que se necesite
+    document.addEventListener('DOMContentLoaded', function () {
+        // Cargar jsPDF al inicio
+        const jsPDFScript = document.createElement('script');
+        jsPDFScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+        document.body.appendChild(jsPDFScript);
+
+        // Añadir evento al botón de descarga CV
+        const btnDescargarCV = document.querySelector('.btn--secondary');
+        if (btnDescargarCV) {
+            btnDescargarCV.addEventListener('click', function (e) {
+                e.preventDefault();
+                generarYDescargarCV();
+            });
+        }
+    });
+
+    function generarYDescargarCV() {
+        // Verificar si jsPDF está cargado
+        if (typeof window.jspdf === 'undefined') {
+            alert('Cargando herramientas para generar el CV, por favor espera un momento y vuelve a intentarlo...');
+
+            // Intentar cargar jsPDF de nuevo
+            const jsPDFScript = document.createElement('script');
+            jsPDFScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+            jsPDFScript.onload = function () {
+                setTimeout(function () {
+                    generarYDescargarCV();
+                }, 1000);
+            };
+            document.body.appendChild(jsPDFScript);
+            return;
+        }
+
+        // Mostrar mensaje de generación
+        alert('Generando CV, por favor espera un momento...');
+
+        try {
+            // Crear el PDF
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF('p', 'mm', 'a4');
+
+            // Colores
+            const azulPrimario = '#4D61FC';
+            const grisOscuro = '#232946';
+            const gris = '#6B7280';
+
+            // Márgenes
+            const margenIzq = 20;
+            const margenSup = 20;
+            const anchoPagina = 170;
+
+            // Encabezado
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(24);
+            doc.setTextColor(grisOscuro);
+            doc.text('MARCO ANTONIO RULFO CASTRO', margenIzq, margenSup);
+
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(14);
+            doc.setTextColor(azulPrimario);
+            doc.text('Desarrollador Web Full Stack & Especialista en TI', margenIzq, margenSup + 10);
+
+            // Contacto
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(10);
+            doc.setTextColor(gris);
+            doc.text('Email: marcorulfo100@gmail.com | Tel: +52 55 3108 3353 | GitHub: github.com/Marcor360', margenIzq, margenSup + 18);
+            doc.text('Ubicación: Coret #10, Mártires de Río Blanco, Naucalpan, Estado de México', margenIzq, margenSup + 24);
+
+            // Línea separadora
+            doc.setDrawColor(azulPrimario);
+            doc.setLineWidth(0.5);
+            doc.line(margenIzq, margenSup + 28, 190 - margenIzq, margenSup + 28);
+
+            // Perfil
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(14);
+            doc.setTextColor(grisOscuro);
+            doc.text('PERFIL PROFESIONAL', margenIzq, margenSup + 36);
+
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(10);
+            doc.setTextColor(gris);
+            const perfil = 'Desarrollador web full stack con amplio conocimiento en tecnologías front-end y back-end. ' +
+                'Mi expertise incluye HTML5, CSS3, SASS, JavaScript, PHP, React, Node.js y SQL, permitiéndome ' +
+                'construir aplicaciones web completas y responsivas. Actualmente en mi último año de Ingeniería ' +
+                'en Sistemas Computacionales, combino mi formación académica con experiencia práctica en desarrollo ' +
+                'web y soporte técnico.';
+
+            const perfilFormateado = doc.splitTextToSize(perfil, anchoPagina);
+            doc.text(perfilFormateado, margenIzq, margenSup + 42);
+
+            // Experiencia
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(14);
+            doc.setTextColor(grisOscuro);
+            doc.text('EXPERIENCIA PROFESIONAL', margenIzq, margenSup + 60);
+
+            // Experiencia 1
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(12);
+            doc.text('Desarrollador Web', margenIzq, margenSup + 68);
+
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(10);
+            doc.setTextColor(azulPrimario);
+            doc.text('Freelance | Enero 2022 - Presente', margenIzq, margenSup + 74);
+
+            doc.setTextColor(gris);
+            let posY = margenSup + 80;
+            const exp1 = [
+                '• Desarrollo de sitios web y aplicaciones personalizadas para diversos clientes.',
+                '• Implementación de soluciones responsivas y optimizadas para buscadores.',
+                '• Creación de interfaces intuitivas centradas en la experiencia del usuario.',
+                '• Mantenimiento y actualización de aplicaciones existentes.'
+            ];
+
+            exp1.forEach(item => {
+                doc.text(item, margenIzq, posY);
+                posY += 6;
+            });
+
+            // Experiencia 2
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(12);
+            doc.setTextColor(grisOscuro);
+            doc.text('Becario de Sistemas', margenIzq, posY + 2);
+
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(10);
+            doc.setTextColor(azulPrimario);
+            doc.text('USA SHOES | Octubre 2023 - Febrero 2024', margenIzq, posY + 8);
+
+            doc.setTextColor(gris);
+            posY += 14;
+            const exp2 = [
+                '• Implementación y mantenimiento de sistemas informáticos.',
+                '• Soporte técnico a usuarios finales y proyectos de desarrollo.',
+                '• Análisis de procesos empresariales para identificar mejoras.',
+                '• Trabajo con herramientas de gestión de inventario y sistemas ERP.'
+            ];
+
+            exp2.forEach(item => {
+                doc.text(item, margenIzq, posY);
+                posY += 6;
+            });
+
+            // Experiencia 3
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(12);
+            doc.setTextColor(grisOscuro);
+            doc.text('Encargado de Soporte TI', margenIzq, posY + 2);
+
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(10);
+            doc.setTextColor(azulPrimario);
+            doc.text('AICCA | Junio 2022 - Julio 2023', margenIzq, posY + 8);
+
+            posY += 14;
+            doc.setTextColor(gris);
+            const exp3 = [
+                '• Liderazgo del área de soporte técnico, gestionando un equipo de 3 personas.',
+                '• Implementación de soluciones para mejorar la eficiencia operativa.',
+                '• Reducción del 30% en el tiempo de resolución de incidencias.',
+                '• Coordinación de proyectos de actualización de hardware y software.'
+            ];
+
+            exp3.forEach(item => {
+                doc.text(item, margenIzq, posY);
+                posY += 6;
+            });
+
+            // Segunda página
+            doc.addPage();
+            posY = margenSup;
+
+            // Formación académica
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(14);
+            doc.setTextColor(grisOscuro);
+            doc.text('FORMACIÓN ACADÉMICA', margenIzq, posY);
+
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(12);
+            doc.setTextColor(grisOscuro);
+            doc.text('Ingeniería en Sistemas Computacionales', margenIzq, posY + 8);
+
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(10);
+            doc.setTextColor(azulPrimario);
+            doc.text('Universidad Tres Culturas | En curso (último año)', margenIzq, posY + 14);
+
+            // Certificaciones
+            posY += 24;
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(14);
+            doc.setTextColor(grisOscuro);
+            doc.text('CERTIFICACIONES', margenIzq, posY);
+
+            // Certificación 1
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(12);
+            doc.setTextColor(grisOscuro);
+            doc.text('Ética: Uso Responsable de Datos', margenIzq, posY + 8);
+
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(10);
+            doc.setTextColor(azulPrimario);
+            doc.text('Universidad Tres Culturas | Abril 2025', margenIzq, posY + 14);
+
+            // Certificación 2
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(12);
+            doc.setTextColor(grisOscuro);
+            doc.text('Bases y conceptos clave de la IA', margenIzq, posY + 22);
+
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(10);
+            doc.setTextColor(azulPrimario);
+            doc.text('Universidad Tres Culturas | Marzo 2025', margenIzq, posY + 28);
+
+            // Certificación 3 y 4 (juntas para ahorrar espacio)
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(12);
+            doc.setTextColor(grisOscuro);
+            doc.text('Fundamentos del Análisis de Datos / Principios de Data Science', margenIzq, posY + 36);
+
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(10);
+            doc.setTextColor(azulPrimario);
+            doc.text('Universidad Tres Culturas | Abril 2025', margenIzq, posY + 42);
+
+            // Habilidades
+            posY += 50;
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(14);
+            doc.setTextColor(grisOscuro);
+            doc.text('HABILIDADES', margenIzq, posY);
+
+            // Columna izquierda: Tecnologías
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(12);
+            doc.setTextColor(grisOscuro);
+            doc.text('Tecnologías Web', margenIzq, posY + 8);
+
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(10);
+            doc.setTextColor(gris);
+            let skillY = posY + 14;
+            const skills1 = [
+                '• HTML5/CSS3/SASS (95%)',
+                '• JavaScript (90%)',
+                '• React (85%)',
+                '• Node.js (80%)',
+                '• PHP (85%)',
+                '• SQL (85%)',
+                '• Git & GitHub (90%)'
+            ];
+
+            skills1.forEach(skill => {
+                doc.text(skill, margenIzq, skillY);
+                skillY += 6;
+            });
+
+            // Columna derecha: Habilidades profesionales
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(12);
+            doc.setTextColor(grisOscuro);
+            doc.text('Habilidades Profesionales', margenIzq + 90, posY + 8);
+
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(10);
+            doc.setTextColor(gris);
+            skillY = posY + 14;
+            const skills2 = [
+                '• Soporte Técnico (95%)',
+                '• Mantenimiento de Equipos (90%)',
+                '• Administración de Sistemas (80%)',
+                '• Resolución de Problemas (95%)',
+                '• Trabajo en Equipo (90%)',
+                '• Comunicación Efectiva (90%)'
+            ];
+
+            skills2.forEach(skill => {
+                doc.text(skill, margenIzq + 90, skillY);
+                skillY += 6;
+            });
+
+            // Guardar PDF
+            doc.save('CV_Marco_Antonio_Rulfo_Castro.pdf');
+
+            alert('¡CV generado correctamente! La descarga ha comenzado.');
+        } catch (error) {
+            console.error('Error al generar el CV:', error);
+            alert('Hubo un error al generar el CV. Por favor, inténtalo de nuevo más tarde.');
+        }
+    }
+
     // Inicializar todas las funcionalidades
     initExperienceModals();
 });
