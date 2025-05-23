@@ -1,5 +1,5 @@
 /**
- * Archivo principal de JavaScript
+ * Archivo principal de JavaScript - VERSIÓN MEJORADA CON FOTOGRAFÍA
  * Marco Antonio Rulfo Castro - Portafolio Web
  */
 
@@ -517,27 +517,101 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
- * Generador de CV en PDF
- */
+     * GENERADOR DE CV EN PDF CON FOTOGRAFÍA - VERSIÓN MEJORADA
+     */
 
-    // Primero, vamos a cargar jsPDF antes de que se necesite
-    document.addEventListener('DOMContentLoaded', function () {
-        // Cargar jsPDF al inicio
-        const jsPDFScript = document.createElement('script');
-        jsPDFScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
-        document.body.appendChild(jsPDFScript);
+    // Función para convertir imagen a base64 con múltiples intentos
+    function getImageAsBase64() {
+        return new Promise(async (resolve) => {
+            // Lista de rutas posibles para la imagen - PRIORIZANDO WEBP
+            const rutasPosibles = [
+                'build/img/Marco-Rulfo.webp', // ✅ WEBP PRIMERO (como solicitado)
+                './build/img/Marco-Rulfo.webp',
+                'build/img/Marco-Rulfo.jpg', // JPG como respaldo
+                './build/img/Marco-Rulfo.jpg',
+                'build/img/Marco-Rulfo.png'
+            ];
 
-        // Añadir evento al botón de descarga CV
-        const btnDescargarCV = document.querySelector('.btn--secondary');
-        if (btnDescargarCV) {
-            btnDescargarCV.addEventListener('click', function (e) {
-                e.preventDefault();
-                generarYDescargarCV();
-            });
-        }
-    });
+            console.log('🔍 Intentando cargar fotografía para CV (priorizando WEBP)...');
 
-    function generarYDescargarCV() {
+            // Intentar cada ruta
+            for (const ruta of rutasPosibles) {
+                try {
+                    console.log(`📸 Probando ruta: ${ruta}`);
+
+                    const img = new Image();
+
+                    const imageLoaded = new Promise((imgResolve, imgReject) => {
+                        img.onload = function () {
+                            try {
+                                const canvas = document.createElement('canvas');
+                                const ctx = canvas.getContext('2d');
+
+                                // Establecer dimensiones del canvas (tamaño optimizado para CV)
+                                const size = 200; // Tamaño estándar para foto de CV
+                                canvas.width = size;
+                                canvas.height = size;
+
+                                // Calcular dimensiones para hacer la imagen cuadrada (centrada)
+                                const aspectRatio = img.width / img.height;
+                                let drawWidth, drawHeight, drawX, drawY;
+
+                                if (aspectRatio > 1) {
+                                    // Imagen más ancha que alta
+                                    drawHeight = size;
+                                    drawWidth = size * aspectRatio;
+                                    drawX = -(drawWidth - size) / 2;
+                                    drawY = 0;
+                                } else {
+                                    // Imagen más alta que ancha
+                                    drawWidth = size;
+                                    drawHeight = size / aspectRatio;
+                                    drawX = 0;
+                                    drawY = -(drawHeight - size) / 2;
+                                }
+
+                                // Dibujar la imagen en el canvas
+                                ctx.drawImage(img, drawX, drawY, drawWidth, drawHeight);
+
+                                // Convertir a base64 (JPEG para mejor compatibilidad con PDF)
+                                const dataURL = canvas.toDataURL('image/jpeg', 0.9);
+                                console.log('✅ Imagen WEBP cargada y convertida exitosamente:', ruta);
+                                imgResolve(dataURL);
+                            } catch (canvasError) {
+                                console.warn('❌ Error al procesar imagen:', canvasError);
+                                imgReject(canvasError);
+                            }
+                        };
+
+                        img.onerror = function () {
+                            console.warn(`❌ No se pudo cargar: ${ruta}`);
+                            imgReject(new Error(`No se pudo cargar: ${ruta}`));
+                        };
+
+                        // Configurar imagen sin CORS para archivos locales
+                        img.crossOrigin = '';
+                        img.src = ruta;
+                    });
+
+                    // Intentar cargar esta imagen
+                    const result = await imageLoaded;
+                    return resolve(result); // Éxito - retornar resultado
+
+                } catch (error) {
+                    console.warn(`❌ Falló al cargar ${ruta}:`, error.message);
+                    continue; // Continuar con la siguiente ruta
+                }
+            }
+
+            // Si llegamos aquí, ninguna ruta funcionó
+            console.warn('⚠️ No se pudo cargar ninguna imagen de las rutas intentadas');
+            console.log('📝 Rutas probadas:', rutasPosibles);
+            resolve(null);
+        });
+    }
+
+    // Función principal para generar y descargar CV
+    async function generarYDescargarCV() {
         // Verificar si jsPDF está cargado
         if (typeof window.jspdf === 'undefined') {
             alert('Cargando herramientas para generar el CV, por favor espera un momento y vuelve a intentarlo...');
@@ -555,9 +629,13 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // Mostrar mensaje de generación
-        alert('Generando CV, por favor espera un momento...');
+        alert('Generando CV con fotografía, por favor espera un momento...');
 
         try {
+            // Intentar cargar la fotografía
+            console.log('🔄 Iniciando generación de CV...');
+            const fotoBase64 = await getImageAsBase64();
+
             // Crear el PDF
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF('p', 'mm', 'a4');
@@ -571,6 +649,36 @@ document.addEventListener('DOMContentLoaded', function () {
             const margenIzq = 20;
             const margenSup = 20;
             const anchoPagina = 170;
+
+            // FOTO DE PERFIL (si está disponible)
+            if (fotoBase64) {
+                try {
+                    console.log('📸 Añadiendo fotografía al CV...');
+
+                    // Posición y tamaño de la foto
+                    const fotoX = 155; // Posición X
+                    const fotoY = margenSup; // Posición Y  
+                    const fotoTamaño = 35; // Tamaño de la foto
+
+                    // Crear un círculo blanco de fondo
+                    doc.setFillColor(255, 255, 255);
+                    doc.circle(fotoX + fotoTamaño / 2, fotoY + fotoTamaño / 2, fotoTamaño / 2, 'F');
+
+                    // Añadir foto
+                    doc.addImage(fotoBase64, 'JPEG', fotoX, fotoY, fotoTamaño, fotoTamaño);
+
+                    // Añadir borde circular a la foto
+                    doc.setDrawColor(77, 97, 252); // Color azul primario
+                    doc.setLineWidth(1);
+                    doc.circle(fotoX + fotoTamaño / 2, fotoY + fotoTamaño / 2, fotoTamaño / 2);
+
+                    console.log('✅ Fotografía incluida exitosamente en el CV');
+                } catch (error) {
+                    console.warn('❌ Error al añadir la foto al PDF:', error);
+                }
+            } else {
+                console.warn('⚠️ No se pudo cargar la fotografía para el CV');
+            }
 
             // Encabezado
             doc.setFont('helvetica', 'bold');
@@ -812,13 +920,62 @@ document.addEventListener('DOMContentLoaded', function () {
             // Guardar PDF
             doc.save('CV_Marco_Antonio_Rulfo_Castro.pdf');
 
-            alert('¡CV generado correctamente! La descarga ha comenzado.');
+            // Mensaje de éxito personalizado
+            const mensaje = fotoBase64
+                ? '🎉 ¡CV generado exitosamente con tu fotografía WEBP incluida! La descarga ha comenzado.'
+                : '📄 ¡CV generado exitosamente! La descarga ha comenzado.\n\n💡 Nota: Para incluir tu foto, asegúrate de que esté en build/img/Marco-Rulfo.webp (preferido) o .jpg';
+
+            alert(mensaje);
+            console.log('✅ Proceso completado exitosamente');
+
         } catch (error) {
             console.error('Error al generar el CV:', error);
             alert('Hubo un error al generar el CV. Por favor, inténtalo de nuevo más tarde.');
         }
     }
 
+    // Cuando el documento esté listo, cargar jsPDF y añadir evento al botón de CV
+    document.addEventListener('DOMContentLoaded', function () {
+        // Cargar jsPDF al inicio
+        const jsPDFScript = document.createElement('script');
+        jsPDFScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+        document.body.appendChild(jsPDFScript);
+
+        // Añadir evento al botón de descarga CV
+        const btnDescargarCV = document.querySelector('.btn--secondary');
+        if (btnDescargarCV) {
+            btnDescargarCV.addEventListener('click', function (e) {
+                e.preventDefault();
+                generarYDescargarCV();
+            });
+        }
+    });
+
     // Inicializar todas las funcionalidades
     initExperienceModals();
+
+    // Función de debugging para verificar imágenes (opcional - para desarrollo)
+    window.debugCV = function () {
+        console.log('🔧 DEBUGGING CV - Verificando rutas de imagen (priorizando WEBP)...');
+
+        const rutasPosibles = [
+            'build/img/Marco-Rulfo.webp', // ✅ WEBP PRIMERO
+            'build/img/Marco-Rulfo.jpg',  // JPG como respaldo
+            'build/img/Marco-Rulfo.png'
+        ];
+
+        rutasPosibles.forEach((ruta, index) => {
+            const img = new Image();
+            img.onload = () => {
+                const prioridad = index === 0 ? ' 🥇 (PREFERIDO)' : index === 1 ? ' 🥈 (RESPALDO)' : ' 🥉 (ALTERNATIVO)';
+                console.log(`✅ ${ruta} - DISPONIBLE${prioridad}`);
+            };
+            img.onerror = () => console.log(`❌ ${ruta} - NO ENCONTRADA`);
+            img.src = ruta;
+        });
+
+        console.log('💡 Tip: Abre la consola del navegador para ver los resultados');
+        console.log('💡 Para verificar: Ejecuta debugCV() en la consola');
+        console.log('🎯 El sistema usará WEBP si está disponible, JPG como respaldo');
+    };
 });
