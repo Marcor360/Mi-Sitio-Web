@@ -1,110 +1,80 @@
 # Mi Sitio Web Personal
 
-Sitio web personal tipo currículum para Marco Antonio Rulfo Castro.
+Portafolio personal de Marco Antonio Rulfo Castro migrado a React con Vite, Sass y GSAP.
+
+## Stack actual
+
+- React para la interfaz y la composición del sitio
+- Vite como entorno de desarrollo y build
+- Sass para estilos y layout responsivo
+- GSAP para animaciones sutiles
+- jsPDF para generar el CV desde la propia aplicación
 
 ## Características
 
-- Diseño completamente responsivo para dispositivos móviles, tablets y desktop
-- Secciones para presentación personal, sobre mí, certificaciones y habilidades
-- Formulario de contacto
-- Enlaces a redes sociales y métodos de contacto
-- Procesamiento de imágenes optimizadas (JPEG, WebP, AVIF)
-- Compilación de SCSS y JavaScript
+- Diseño responsivo para desktop, tablet y mobile
+- Navegación móvil con menú colapsable
+- Secciones de perfil, experiencia, formación, certificaciones, habilidades y contacto
+- Modal de detalle para experiencia profesional
+- Formulario que prepara el mensaje en el cliente de correo
+- Descarga dinámica de CV en PDF
+- Carga local de certificaciones sin `fetch` roto
 
-## Estructura del Proyecto
+## Estructura principal
 
-```
+```txt
 /
-├── build/              # Archivos compilados (generados por Gulp)
-│   ├── css/            # CSS compilado
-│   ├── js/             # JavaScript compilado
-│   └── img/            # Imágenes optimizadas
-├── src/                # Código fuente
-│   ├── scss/           # Archivos SCSS
-│   │   ├── base/       # Estilos base (variables, mixins, reset, etc.)
-│   │   └── layout/     # Componentes y secciones
-│   ├── js/             # Archivos JavaScript
-│   └── img/            # Imágenes originales
-├── index.html          # Página principal
-├── gulpfile.js         # Configuración de Gulp
-├── package.json        # Dependencias y scripts
-└── README.md           # Este archivo
+|-- index.html
+|-- package.json
+|-- vite.config.js
+|-- SRC/
+|   |-- App.jsx
+|   |-- main.jsx
+|   |-- components/
+|   |-- data/
+|   |-- hooks/
+|   |-- img/
+|   |-- SASS/
+|   `-- utils/
+`-- README.md
 ```
 
 ## Requisitos
 
-- Node.js 16.x o superior
-- npm 8.x o superior
+- Node.js 20.19 o superior, o bien 22.12 o superior
+- npm 10 o superior
 
 ## Instalación
 
-1. Clona este repositorio:
-   ```bash
-   git clone https://github.com/Marcor360/Mi-Sitio-Web.git
-   cd Mi-Sitio-Web
-   ```
+```bash
+npm install
+```
 
-2. Instala las dependencias:
-   ```bash
-   npm install
-   ```
-
-## Uso
+## Scripts
 
 ### Desarrollo
-
-Para iniciar el entorno de desarrollo con recompilación automática:
 
 ```bash
 npm run dev
 ```
 
-Esto iniciará Gulp en modo desarrollo y vigilará los cambios en los archivos SCSS, JS e imágenes.
-
-### Construcción
-
-Para construir el proyecto para producción:
+### Build de producción
 
 ```bash
 npm run build
 ```
 
-Esto limpiará la carpeta `build` y generará nuevos archivos optimizados.
+### Vista previa del build
 
-## Personalización
+```bash
+npm run preview
+```
 
-### Imágenes
+## Notas
 
-Coloca tus imágenes en la carpeta `src/img/`. Serán procesadas automáticamente en varios formatos:
-- El formato original se mantendrá
-- Se creará una versión WebP (mejor compatibilidad y compresión)
-- Se creará una versión AVIF (máxima compresión para navegadores modernos)
-
-### Estilos
-
-Los estilos están organizados en módulos SCSS para facilitar su mantenimiento:
-
-- `_variables.scss`: Colores, tipografía, tamaños, etc.
-- `_mixins.scss`: Funciones reutilizables para responsividad y componentes
-- Archivos específicos para cada sección del sitio
-
-### JavaScript
-
-El archivo `app.js` contiene la funcionalidad principal del sitio, incluyendo:
-
-- Menú de navegación móvil
-- Animaciones de elementos
-- Manejo del formulario de contacto
-
-## Despliegue
-
-Este sitio puede desplegarse en cualquier servidor web estático, incluyendo:
-
-- GitHub Pages
-- Netlify
-- Vercel
-- Firebase Hosting
-- Cualquier servidor web tradicional
+- El directorio `SRC` se mantiene en mayúsculas para respetar la estructura original del proyecto.
+- El build de Vite se genera en `dist/`.
+- El directorio `build/` pertenece a la etapa anterior basada en Gulp y ya no forma parte del flujo actual.
 
 ## Licencia
 

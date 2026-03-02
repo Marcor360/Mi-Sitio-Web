@@ -1,0 +1,194 @@
+.item {
+  position: relative;
+  display: grid;
+  gap: 0.8rem;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.item:hover,
+.itemActive {
+  transform: translateY(-1px);
+  border-color: rgba(34, 211, 238, 0.22);
+  box-shadow: 0 1rem 2rem rgba(2, 8, 23, 0.16);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.titleGroup {
+  min-width: 0;
+}
+
+.name {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.35;
+  color: var(--text-primary);
+}
+
+.levelText {
+  margin: 0.3rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+.infoButton,
+.tooltipClose {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.9rem;
+  min-width: 1.9rem;
+  height: 1.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-secondary);
+  font: inherit;
+  cursor: pointer;
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+
+.infoButton:hover,
+.infoButton:focus-visible,
+.tooltipClose:hover,
+.tooltipClose:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(34, 211, 238, 0.35);
+  background: rgba(34, 211, 238, 0.08);
+  color: var(--text-primary);
+  outline: none;
+}
+
+.meter {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.segment {
+  min-height: 0.5rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  transform-origin: left center;
+}
+
+.segment[data-meter-filled='true'] {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.92), rgba(34, 211, 238, 0.9));
+  box-shadow: 0 0 0.9rem rgba(34, 211, 238, 0.18);
+}
+
+.item:hover .segment[data-meter-filled='true'],
+.itemActive .segment[data-meter-filled='true'] {
+  box-shadow: 0 0 1.15rem rgba(34, 211, 238, 0.28);
+}
+
+.details {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.evidenceList,
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.evidenceChip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.75rem;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  line-height: 1;
+}
+
+.tooltip {
+  position: absolute;
+  top: calc(100% + 0.6rem);
+  right: 0;
+  z-index: 8;
+  width: min(20rem, calc(100vw - 2.5rem));
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  background: rgba(11, 15, 25, 0.96);
+  color: var(--text-primary);
+  box-shadow: 0 1.2rem 2.8rem rgba(2, 8, 23, 0.35);
+  backdrop-filter: blur(14px);
+}
+
+.tooltipTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.tooltipTitle,
+.tooltipLabel,
+.tooltipCopy {
+  margin: 0;
+}
+
+.tooltipTitle {
+  font-size: 0.9rem;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+
+.tooltipLabel {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.tooltipCopy {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.tooltipList {
+  margin: 0;
+  padding-left: 1rem;
+  display: grid;
+  gap: 0.4rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 700px) {
+  .tooltip {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    top: auto;
+    width: auto;
+    left: 1rem;
+    max-width: none;
+  }
+}

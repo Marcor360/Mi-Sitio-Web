@@ -1,12 +1,13 @@
 {
   "name": "mi-sitio-web",
-  "version": "1.0.0",
-  "description": "Sitio web de Marco Antonio Rulfo Castro",
-  "main": "gulpfile.js",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Portafolio personal de Marco Antonio Rulfo Castro construido con React, Sass y GSAP",
   "type": "module",
   "scripts": {
-    "dev": "gulp",
-    "build": "gulp build"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "repository": {
     "type": "git",
@@ -21,15 +22,16 @@
     "url": "https://github.com/Marcor360/Mi-Sitio-Web/issues"
   },
   "homepage": "https://github.com/Marcor360/Mi-Sitio-Web#readme",
+  "dependencies": {
+    "gsap": "^3.12.5",
+    "jspdf": "^4.2.0",
+    "lucide-react": "^0.576.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
   "devDependencies": {
-    "glob": "^11.0.2",
-    "gulp": "^5.0.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-rename": "^2.0.0",
-    "gulp-sass": "^6.0.1",
-    "gulp-terser": "^2.1.0",
-    "path": "^0.12.7",
+    "@vitejs/plugin-react": "^5.1.4",
     "sass": "^1.87.0",
-    "sharp": "^0.34.1"
+    "vite": "^7.3.1"
   }
 }

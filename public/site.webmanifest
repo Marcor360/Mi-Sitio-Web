@@ -1,0 +1,23 @@
+{
+  "name": "Marco Antonio Rulfo Castro | Frontend Developer",
+  "short_name": "Marco Rulfo",
+  "description": "Portafolio de Frontend Developer enfocado en React, TypeScript, performance, SEO, GA4 y GSAP.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B0F19",
+  "theme_color": "#0B0F19",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.svg",
+      "sizes": "180x180",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

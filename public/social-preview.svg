@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Preview">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B0F19" />
+      <stop offset="50%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366F1" />
+      <stop offset="100%" stop-color="#22D3EE" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <circle cx="980" cy="110" r="140" fill="rgba(99,102,241,0.10)" />
+  <circle cx="980" cy="110" r="84" fill="rgba(34,211,238,0.08)" />
+  <g transform="translate(88 122)">
+    <text
+      x="0"
+      y="0"
+      fill="#CBD5E1"
+      font-size="28"
+      font-family="'DM Sans', Arial, sans-serif"
+      letter-spacing="3"
+    >
+      FRONTEND DEVELOPER
+    </text>
+    <text
+      x="0"
+      y="118"
+      fill="#F8FAFC"
+      font-size="70"
+      font-weight="700"
+      font-family="'Poppins', Arial, sans-serif"
+    >
+      Marco Antonio
+    </text>
+    <text
+      x="0"
+      y="196"
+      fill="url(#accent)"
+      font-size="70"
+      font-weight="700"
+      font-family="'Poppins', Arial, sans-serif"
+    >
+      Rulfo Castro
+    </text>
+    <text
+      x="0"
+      y="290"
+      fill="#CBD5E1"
+      font-size="34"
+      font-family="'DM Sans', Arial, sans-serif"
+    >
+      React • TypeScript • Performance • SEO • GA4 • GSAP
+    </text>
+    <rect x="0" y="354" width="560" height="106" rx="26" fill="rgba(17,24,39,0.65)" stroke="rgba(255,255,255,0.06)" />
+    <text
+      x="36"
+      y="418"
+      fill="#F8FAFC"
+      font-size="34"
+      font-family="'DM Sans', Arial, sans-serif"
+    >
+      Interfaces rápidas, medibles y mantenibles
+    </text>
+  </g>
+</svg>
