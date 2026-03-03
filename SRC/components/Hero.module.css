@@ -47,7 +47,7 @@
 
 .title {
   margin: 0;
-  max-width: 11.8ch;
+  max-width: min(100%, 14ch);
   font-family: 'Poppins', sans-serif;
   font-size: clamp(2.7rem, 4.9vw, 4.85rem);
   line-height: 0.98;
@@ -57,10 +57,12 @@
 
 .titleAccent {
   display: block;
+  width: 100%;
   margin-top: 0.08em;
-  max-width: 8.5ch;
+  max-width: 100%;
   font-size: 0.9em;
   line-height: 0.96;
+  text-wrap: balance;
   background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -244,7 +246,7 @@
   }
 
   .title {
-    max-width: 12.2ch;
+    max-width: min(100%, 14ch);
     font-size: clamp(2.45rem, 5.8vw, 4.05rem);
   }
 
@@ -271,7 +273,7 @@
   }
 
   .title {
-    max-width: 12.5ch;
+    max-width: min(100%, 14ch);
     font-size: clamp(2.2rem, 10.4vw, 3.2rem);
     line-height: 1.02;
   }

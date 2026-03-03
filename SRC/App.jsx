@@ -6,8 +6,11 @@ import ExperienceSection from './components/ExperienceSection.jsx';
 import MobileCTA from './components/MobileCTA.jsx';
 import ProjectsSection from './components/ProjectsSection.jsx';
 import {
+  aboutDetails,
   aboutHighlights,
+  aboutStrengths,
   aboutSummary,
+  aboutTechChips,
   certificates,
   contactInfo,
   educationItems,
@@ -20,6 +23,7 @@ import experienceItems from './data/experience.js';
 import { analytics } from './lib/analytics.js';
 import { useGsapAnimations } from './hooks/useGsapAnimations.js';
 import { generateCvPdf } from './utils/generateCv.js';
+import { applyDefaultSeo } from './utils/seo.js';
 import aboutPortrait from './img/Marco-Rulfo-2.jpg';
 
 const CertificationsSection = lazy(() => import('./components/CertificationsSection.jsx'));
@@ -48,6 +52,14 @@ function App() {
   const [isGeneratingCv, setIsGeneratingCv] = useState(false);
 
   useGsapAnimations(appRef);
+
+  useEffect(() => {
+    applyDefaultSeo({
+      email: contactInfo.email,
+      githubUrl: contactInfo.githubUrl,
+      location: contactInfo.location,
+    });
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
@@ -117,7 +129,7 @@ function App() {
               eyebrow="Perfil"
               iconName="Shield"
               title="Soluciones web con criterio técnico y enfoque realista"
-              description="La migración a React no solo cambia la tecnología. También ordena estructura, corrige errores y deja una base más mantenible."
+              description="Desarrollo, soporte y ejecución operativa con foco en experiencias web limpias, mantenibles y alineadas con lo que el proyecto necesita."
             />
 
             <div className="about__layout">
@@ -134,18 +146,25 @@ function App() {
               </div>
 
               <div className="about__content surface-card" data-reveal>
-                <p className="about__lead">{aboutSummary}</p>
+                <div className="about__prose">
+                  <p className="about__lead">{aboutSummary}</p>
+                  <p className="about__lead">{aboutDetails}</p>
+                </div>
 
-                <ul className="about__bullets">
-                  {aboutHighlights.map((item) => (
-                    <li key={item} className="about__bullet">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                <div className="about__strengths">
+                  <p className="about__subheading">Fortalezas por tipo de proyecto</p>
+
+                  <ul className="about__bullets">
+                    {aboutStrengths.map((item) => (
+                      <li key={item} className="about__bullet">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
                 <div className="about__chips" aria-label="Tecnologías principales">
-                  {['React', 'Node.js', 'PHP', 'SQL', 'Sass', 'Responsive Design'].map((item) => (
+                  {aboutTechChips.map((item) => (
                     <span key={item} className="chip">
                       {item}
                     </span>

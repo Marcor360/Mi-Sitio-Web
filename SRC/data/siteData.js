@@ -57,10 +57,31 @@ export const profileLead =
 export const aboutSummary =
   'Combino experiencia en desarrollo front-end y back-end con soporte técnico, mantenimiento e integración de procesos. Trabajo con HTML, CSS, Sass, JavaScript, React, Node.js, PHP y SQL, y me adapto rápido a nuevos stacks cuando el proyecto lo exige.';
 
+export const aboutDetails =
+  'Concluí la Ingeniería en Sistemas Computacionales en la Universidad Tres Culturas (agosto de 2025). He participado en proyectos freelance y en entornos operativos donde soporte, continuidad y ejecución son prioridad. Mi foco está en construir experiencias web responsivas, limpias y sostenibles, con criterio técnico y comunicación clara.';
+
 export const aboutHighlights = [
   'Concluí la Ingeniería en Sistemas Computacionales en la Universidad Tres Culturas en agosto de 2025.',
   'Tengo experiencia tanto en proyectos freelance como en entornos operativos donde el soporte, la continuidad y la ejecución importan.',
   'Mi foco está en construir experiencias web responsivas, limpias y sostenibles, con criterio técnico y buena comunicación.',
+];
+
+export const aboutStrengths = [
+  'React + Vite y flujo moderno de front (estructura de componentes, mantenibilidad, responsive y optimización básica de performance).',
+  'Animación UI avanzada con GSAP/ScrollTrigger (secciones pinned, reveals, scroll-driven effects y microinteracciones orientadas a UX).',
+  'TypeScript y TailwindCSS en proyectos reales (arquitectura, consistencia visual y escalabilidad del UI).',
+  'Analítica y medición desde el front: GA4, Google Tag Manager, Google Search Console, estructuración de eventos, medición de embudos y soporte para audiencias de campañas.',
+  'SEO técnico: control de indexación, buenas prácticas de canonical, estructura de páginas y consideraciones on-page para rendimiento y rastreo.',
+  'Ads / tracking: implementación base de tracking para campañas (por ejemplo, eventos y audiencias para Meta Ads y Google Ads a partir del comportamiento on-site).',
+];
+
+export const aboutTechChips = [
+  'React + Vite',
+  'TypeScript',
+  'TailwindCSS',
+  'GSAP / ScrollTrigger',
+  'GA4 / GTM',
+  'SEO técnico',
 ];
 
 export const experienceItems = [

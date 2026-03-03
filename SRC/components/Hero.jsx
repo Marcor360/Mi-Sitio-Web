@@ -145,7 +145,7 @@ function Hero({
                 color="var(--bg-primary)"
                 className="icon--interactive"
               />
-              <span>Cont\u00E1ctame</span>
+              <span>{'Cont\u00E1ctame'}</span>
             </a>
 
             <button
