@@ -10,7 +10,7 @@
     0.75rem
     1rem
     max(0.75rem, env(safe-area-inset-bottom));
-  background: rgba(11, 15, 25, 0.94);
+  background: rgba(var(--bg-primary-rgb), 0.94);
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(12px);
   animation: slideUp 220ms ease-out;
@@ -38,7 +38,7 @@
 .primary {
   flex: 1;
   border: 0;
-  background: linear-gradient(135deg, #6366f1, #22d3ee);
+  background: var(--accent-gradient);
   color: var(--bg-primary);
 }
 
@@ -56,7 +56,7 @@
 .secondary:focus-visible {
   transform: translateY(-1px);
   filter: brightness(1.04);
-  outline: 2px solid rgba(34, 211, 238, 0.45);
+  outline: 2px solid rgba(var(--accent-ai-rgb), 0.45);
   outline-offset: 2px;
 }
 

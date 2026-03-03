@@ -59,8 +59,8 @@
 .filterButton:hover,
 .filterButtonActive {
   transform: translateY(-1px);
-  border-color: rgba(34, 211, 238, 0.35);
-  background: rgba(34, 211, 238, 0.08);
+  border-color: rgba(var(--accent-ai-rgb), 0.35);
+  background: rgba(var(--accent-ai-rgb), 0.08);
   color: var(--text-primary);
 }
 
@@ -68,7 +68,7 @@
 .searchInput:focus-visible,
 .detailButton:focus-visible,
 .linkButton:focus-visible {
-  outline: 2px solid rgba(34, 211, 238, 0.45);
+  outline: 2px solid rgba(var(--accent-ai-rgb), 0.45);
   outline-offset: 2px;
 }
 
@@ -118,7 +118,7 @@
 
 .card:hover {
   transform: translateY(-2px);
-  border-color: rgba(34, 211, 238, 0.18);
+  border-color: rgba(var(--accent-ai-rgb), 0.18);
   box-shadow: 0 1.15rem 2.5rem rgba(2, 8, 23, 0.24);
 }
 
@@ -222,14 +222,14 @@
 
 .detailButton:hover {
   transform: translateY(-1px);
-  border-color: rgba(34, 211, 238, 0.35);
-  background: rgba(34, 211, 238, 0.08);
+  border-color: rgba(var(--accent-ai-rgb), 0.35);
+  background: rgba(var(--accent-ai-rgb), 0.08);
   color: var(--text-primary);
 }
 
 .linkButton,
 .linkButtonDisabled {
-  border: 1px solid rgba(99, 102, 241, 0.28);
+  border: 1px solid rgba(var(--accent-primary-rgb), 0.28);
 }
 
 .linkButton {
@@ -240,8 +240,8 @@
 
 .linkButton:hover {
   transform: translateY(-1px);
-  border-color: rgba(34, 211, 238, 0.35);
-  background: rgba(34, 211, 238, 0.08);
+  border-color: rgba(var(--accent-ai-rgb), 0.35);
+  background: rgba(var(--accent-ai-rgb), 0.08);
   color: var(--text-primary);
 }
 

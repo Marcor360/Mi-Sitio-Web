@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   padding: 1.25rem;
-  background: rgba(11, 15, 25, 0.78);
+  background: rgba(var(--bg-primary-rgb), 0.78);
   backdrop-filter: blur(10px);
 }
 
@@ -77,7 +77,7 @@
 
 .closeButton:focus-visible,
 .link:focus-visible {
-  outline: 2px solid rgba(34, 211, 238, 0.45);
+  outline: 2px solid rgba(var(--accent-ai-rgb), 0.45);
   outline-offset: 2px;
 }
 
@@ -124,7 +124,7 @@
   gap: 0.45rem;
   min-height: 2.6rem;
   padding: 0.7rem 0.95rem;
-  border: 1px solid rgba(99, 102, 241, 0.28);
+  border: 1px solid rgba(var(--accent-primary-rgb), 0.28);
   background: rgba(255, 255, 255, 0.03);
   color: var(--text-primary);
   font: inherit;

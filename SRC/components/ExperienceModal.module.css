@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   padding: 1.25rem;
-  background: rgba(11, 15, 25, 0.78);
+  background: rgba(var(--bg-primary-rgb), 0.78);
   backdrop-filter: blur(10px);
 }
 
@@ -88,14 +88,14 @@
 
 .closeButton:hover {
   transform: translateY(-1px);
-  border-color: rgba(34, 211, 238, 0.35);
-  background: rgba(34, 211, 238, 0.08);
+  border-color: rgba(var(--accent-ai-rgb), 0.35);
+  background: rgba(var(--accent-ai-rgb), 0.08);
   color: var(--text-primary);
 }
 
 .closeButton:focus-visible,
 .link:focus-visible {
-  outline: 2px solid rgba(34, 211, 238, 0.45);
+  outline: 2px solid rgba(var(--accent-ai-rgb), 0.45);
   outline-offset: 2px;
 }
 
@@ -149,7 +149,7 @@
   height: 0.4rem;
   border-radius: 999px;
   background: var(--accent-ai);
-  box-shadow: 0 0 0.75rem rgba(34, 211, 238, 0.25);
+  box-shadow: 0 0 0.75rem rgba(var(--accent-ai-rgb), 0.25);
   transform: translateY(-50%);
 }
 

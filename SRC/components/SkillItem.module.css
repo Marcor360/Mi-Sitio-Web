@@ -15,7 +15,7 @@
 .item:hover,
 .itemActive {
   transform: translateY(-1px);
-  border-color: rgba(34, 211, 238, 0.22);
+  border-color: rgba(var(--accent-ai-rgb), 0.22);
   box-shadow: 0 1rem 2rem rgba(2, 8, 23, 0.16);
 }
 
@@ -70,8 +70,8 @@
 .tooltipClose:hover,
 .tooltipClose:focus-visible {
   transform: translateY(-1px);
-  border-color: rgba(34, 211, 238, 0.35);
-  background: rgba(34, 211, 238, 0.08);
+  border-color: rgba(var(--accent-ai-rgb), 0.35);
+  background: rgba(var(--accent-ai-rgb), 0.08);
   color: var(--text-primary);
   outline: none;
 }
@@ -90,13 +90,17 @@
 }
 
 .segment[data-meter-filled='true'] {
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.92), rgba(34, 211, 238, 0.9));
-  box-shadow: 0 0 0.9rem rgba(34, 211, 238, 0.18);
+  background: linear-gradient(
+    135deg,
+    rgba(var(--accent-primary-rgb), 0.92),
+    rgba(var(--accent-ai-rgb), 0.9)
+  );
+  box-shadow: 0 0 0.9rem rgba(var(--accent-ai-rgb), 0.18);
 }
 
 .item:hover .segment[data-meter-filled='true'],
 .itemActive .segment[data-meter-filled='true'] {
-  box-shadow: 0 0 1.15rem rgba(34, 211, 238, 0.28);
+  box-shadow: 0 0 1.15rem rgba(var(--accent-ai-rgb), 0.28);
 }
 
 .details {
@@ -135,7 +139,7 @@
   padding: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 1rem;
-  background: rgba(11, 15, 25, 0.96);
+  background: rgba(var(--bg-primary-rgb), 0.96);
   color: var(--text-primary);
   box-shadow: 0 1.2rem 2.8rem rgba(2, 8, 23, 0.35);
   backdrop-filter: blur(14px);

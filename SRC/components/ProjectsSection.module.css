@@ -47,7 +47,7 @@
 
 .card:hover {
   transform: translateY(-2px);
-  border-color: rgba(34, 211, 238, 0.18);
+  border-color: rgba(var(--accent-ai-rgb), 0.18);
   box-shadow: 0 1rem 2.3rem rgba(2, 8, 23, 0.2);
 }
 
@@ -96,7 +96,7 @@
   gap: 0.45rem;
   min-height: 2.65rem;
   padding: 0.7rem 0.95rem;
-  border: 1px solid rgba(99, 102, 241, 0.28);
+  border: 1px solid rgba(var(--accent-primary-rgb), 0.28);
   border-radius: 0.95rem;
   background: rgba(255, 255, 255, 0.03);
   color: var(--text-primary);
@@ -112,10 +112,10 @@
 .detailButton:hover,
 .detailButton:focus-visible {
   transform: translateY(-1px);
-  border-color: rgba(34, 211, 238, 0.35);
-  background: rgba(34, 211, 238, 0.08);
+  border-color: rgba(var(--accent-ai-rgb), 0.35);
+  background: rgba(var(--accent-ai-rgb), 0.08);
   color: var(--text-primary);
-  outline: 2px solid rgba(34, 211, 238, 0.45);
+  outline: 2px solid rgba(var(--accent-ai-rgb), 0.45);
   outline-offset: 2px;
 }
 

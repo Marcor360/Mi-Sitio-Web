@@ -106,15 +106,15 @@
 .detailToggle:hover,
 .detailToggleActive {
   transform: translateY(-1px);
-  border-color: rgba(34, 211, 238, 0.35);
-  background: rgba(34, 211, 238, 0.08);
+  border-color: rgba(var(--accent-ai-rgb), 0.35);
+  background: rgba(var(--accent-ai-rgb), 0.08);
   color: var(--text-primary);
 }
 
 .filterButton:focus-visible,
 .detailToggle:focus-visible,
 .categoryToggle:focus-visible {
-  outline: 2px solid rgba(34, 211, 238, 0.45);
+  outline: 2px solid rgba(var(--accent-ai-rgb), 0.45);
   outline-offset: 2px;
 }
 
