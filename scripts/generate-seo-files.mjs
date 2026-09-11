@@ -25,8 +25,8 @@ if (!existsSync(distDir)) {
 }
 
 const robotsContent = siteUrl
-  ? `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`
-  : 'User-agent: *\nAllow: /\n';
+  ? `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n# Profile information for language-model consumers\n# ${siteUrl}/llms.txt\n`
+  : 'User-agent: *\nAllow: /\n\n# The deployment URL is required to publish an absolute Sitemap directive.\n';
 
 writeFileSync(robotsPath, robotsContent, 'utf8');
 
@@ -43,7 +43,7 @@ const sitemapContent =
   `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
   `  <url>\n` +
   `    <loc>${siteUrl}/</loc>\n` +
-  `    <changefreq>weekly</changefreq>\n` +
+  `    <changefreq>monthly</changefreq>\n` +
   `    <priority>1.0</priority>\n` +
   `  </url>\n` +
   `</urlset>\n`;

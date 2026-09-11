@@ -7,19 +7,19 @@ import heroPortrait from '../img/Marco-Rulfo.jpg';
 
 const HERO_COPY = {
   eyebrow: 'DISPONIBLE PARA PROYECTOS WEB \u2022 REMOTO (MX)',
-  title: 'Frontend Developer (React)',
-  titleAccent: 'enfocado en performance, SEO y anal\u00EDtica',
+  title: 'SEO, GEO, UX',
+  titleAccent: 'y Desarrollo Web',
   description:
-    'Construyo interfaces con React (TypeScript + Tailwind), integradas con APIs, optimizadas para Core Web Vitals y SEO t\u00E9cnico. Instrumento medici\u00F3n con GA4 y creo animaciones con GSAP/ScrollTrigger.',
+    'Especialista en SEO, GEO, UX y desarrollo web para ecommerce. Trabajo con React, WordPress, Salesforce Commerce Cloud, GA4, GTM e IA para crear experiencias medibles y útiles.',
   badges: [
-    'React + TypeScript',
-    'Core Web Vitals',
-    'GA4 (eventos/conv.)',
-    'GSAP/ScrollTrigger',
+    'SEO técnico',
+    'GEO SEO',
+    'UX web',
+    'GA4 / GTM',
   ],
   aiBadge: 'AI-ready: Responsible AI / Prompt Design (Vertex AI)',
   trust:
-    'Payrolling-Tech (2025\u2013hoy) \u2022 ALGEDID/Hang Ten (2024\u20132025) \u2022 Freelance (2022\u20132024)',
+    'Diltex brands • Ecommerce, SEO y UX • Naucalpan, Estado de México',
 };
 
 const LINKEDIN_FALLBACK_URL = 'https://www.linkedin.com';
@@ -204,7 +204,7 @@ function Hero({
             <img
               className={styles.image}
               src={heroPortrait}
-              alt="Marco Rulfo, Frontend Developer enfocado en React, performance, SEO y analitica"
+              alt="Marco Rulfo, especialista en SEO, GEO, UX y desarrollo web"
               width="960"
               height="1280"
               loading="eager"

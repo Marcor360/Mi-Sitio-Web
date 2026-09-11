@@ -1,6 +1,46 @@
 {
     "certificates": [
         {
+            "id": "google-analytics-2026",
+            "title": "Google Analytics Certification",
+            "issuer": "Google Digital Academy / Skillshop",
+            "date": "Junio 2026 - Junio 2027",
+            "icon": "fa-solid fa-chart-line",
+            "url": "",
+            "description": "Certificación vigente en Google Analytics para la medición, lectura y optimización de resultados digitales.",
+            "tags": ["Google Analytics 4", "Medición", "Analítica digital"]
+        },
+        {
+            "id": "prompt-design-vertex-ai",
+            "title": "Prompt Design in Vertex AI",
+            "issuer": "Google Cloud Skills Boost",
+            "date": "Agosto 2024",
+            "icon": "fa-solid fa-robot",
+            "url": "https://www.cloudskillsboost.google/public_profiles/56046400-a329-40cb-835a-d876e5818067/badges/10576482",
+            "description": "Diseño de prompts y buenas prácticas aplicadas a Vertex AI.",
+            "tags": ["Prompting", "Vertex AI", "LLMs"]
+        },
+        {
+            "id": "introduction-responsible-ai",
+            "title": "Introduction to Responsible AI",
+            "issuer": "Google",
+            "date": "Agosto 2024",
+            "icon": "fa-solid fa-shield-alt",
+            "url": "",
+            "description": "Principios de IA responsable: sesgos, transparencia y uso ético.",
+            "tags": ["Responsible AI", "Ética", "AI Governance"]
+        },
+        {
+            "id": "responsible-ai-google-cloud",
+            "title": "Responsible AI: Applying AI Principles with Google Cloud",
+            "issuer": "Google Cloud Skills Boost",
+            "date": "Agosto 2024",
+            "icon": "fa-solid fa-shield-alt",
+            "url": "https://www.cloudskillsboost.google/public_profiles/56046400-a329-40cb-835a-d876e5818067/badges/10577774",
+            "description": "Aplicación práctica de principios de IA responsable en Google Cloud.",
+            "tags": ["Responsible AI", "Google Cloud", "Riesgo y sesgos"]
+        },
+        {
             "id": "etica-uso-responsable-datos",
             "title": "Ética: Uso Responsable de Datos",
             "issuer": "Universidad Tres Culturas",

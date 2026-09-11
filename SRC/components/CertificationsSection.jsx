@@ -190,6 +190,24 @@ function CertificationsSection() {
           </label>
         </div>
 
+        <div className={styles.resultSummary} aria-live="polite">
+          <p>
+            {filteredCredentials.length} {filteredCredentials.length === 1 ? 'credencial encontrada' : 'credenciales encontradas'}
+          </p>
+          {searchTerm || activeFilter !== 'all' ? (
+            <button
+              className={styles.clearButton}
+              type="button"
+              onClick={() => {
+                setSearchTerm('');
+                setActiveFilter('all');
+              }}
+            >
+              Limpiar filtros
+            </button>
+          ) : null}
+        </div>
+
         {filteredCredentials.length > 0 ? (
           <div className={styles.grid} ref={gridRef}>
             {filteredCredentials.map((item) => {
@@ -230,7 +248,7 @@ function CertificationsSection() {
                       {item.credentialId ? (
                         <p className={styles.credentialId}>ID: {item.credentialId}</p>
                       ) : (
-                        <p className={styles.credentialIdMuted}>ID no publico</p>
+                        <p className={styles.credentialIdMuted}>ID no público</p>
                       )}
                     </div>
 

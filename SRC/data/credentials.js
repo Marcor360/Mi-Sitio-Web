@@ -1,5 +1,15 @@
 export const credentials = [
   {
+    id: 'google-analytics-2026',
+    title: 'Google Analytics Certification',
+    issuer: 'Google Digital Academy / Skillshop',
+    date: 'Jun 2026 - Jun 2027',
+    url: '',
+    category: 'Data',
+    summary: 'Certificación vigente en Google Analytics para la medición, lectura y optimización de resultados digitales.',
+    skills: ['Google Analytics 4', 'Medición', 'Analítica digital'],
+  },
+  {
     id: 'utc-etica-datos',
     title: 'Etica: Uso Responsable de Datos',
     issuer: 'Universidad Tres Culturas',
@@ -9,6 +19,26 @@ export const credentials = [
     summary:
       'Base practica para identificar sesgos, evaluar decisiones y aplicar criterios de uso responsable de datos.',
     skills: ['Responsible AI', 'Etica de datos', 'Analisis', 'Decision making'],
+  },
+  {
+    id: 'utc-ia-en-accion',
+    title: 'IA en Acción',
+    issuer: 'Universidad Tres Culturas',
+    date: '2025',
+    url: '',
+    category: 'AI',
+    summary: 'Aplicación práctica de herramientas de inteligencia artificial con criterio responsable.',
+    skills: ['Inteligencia Artificial', 'Automatización', 'Productividad'],
+  },
+  {
+    id: 'tecnico-reparacion-equipo-computo',
+    title: 'Técnico en instalación y reparación de equipo de cómputo',
+    issuer: 'Universidad Tres Culturas',
+    date: '2025',
+    url: '',
+    category: 'WebDev',
+    summary: 'Formación técnica para instalación, diagnóstico y mantenimiento de equipo de cómputo.',
+    skills: ['Soporte técnico', 'Mantenimiento', 'Diagnóstico'],
   },
   {
     id: 'utc-bases-ia',

@@ -5,6 +5,7 @@ import SectionHeading from './components/SectionHeading.jsx';
 import ExperienceSection from './components/ExperienceSection.jsx';
 import MobileCTA from './components/MobileCTA.jsx';
 import ProjectsSection from './components/ProjectsSection.jsx';
+import GeoProfileSection from './components/GeoProfileSection.jsx';
 import {
   aboutDetails,
   aboutHighlights,
@@ -57,6 +58,7 @@ function App() {
     applyDefaultSeo({
       email: contactInfo.email,
       githubUrl: contactInfo.githubUrl,
+      linkedinUrl: contactInfo.linkedinUrl,
       location: contactInfo.location,
     });
   }, []);
@@ -106,6 +108,9 @@ function App() {
 
   return (
     <div className="app-shell" ref={appRef}>
+      <a className="skip-link" href="#contenido-principal">
+        Saltar al contenido principal
+      </a>
       <Header
         menuOpen={menuOpen}
         navigationItems={navigationItems}
@@ -113,7 +118,7 @@ function App() {
         onToggle={() => setMenuOpen((current) => !current)}
       />
 
-      <main>
+      <main id="contenido-principal" tabIndex="-1">
         <Hero
           cvMessage={cvMessage}
           githubUrl={contactInfo.githubUrl}
@@ -176,6 +181,7 @@ function App() {
         </section>
         <ExperienceSection />
         <ProjectsSection />
+        <GeoProfileSection />
 
         <section id="formacion" className="section">
           <div className="container">

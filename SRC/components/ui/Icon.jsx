@@ -7,10 +7,8 @@ import {
   Database,
   Download,
   ExternalLink,
-  Github,
   Globe,
   GraduationCap,
-  Linkedin,
   Mail,
   MapPin,
   MessageCircle,
@@ -26,8 +24,10 @@ const ICONS = {
   Mail,
   Phone,
   MapPin,
-  Github,
-  Linkedin,
+  // Lucide 1.x no longer ships brand icons. Keep the public icon names used by
+  // the UI while rendering neutral, meaningful icons for these profile links.
+  Github: Code2,
+  Linkedin: BriefcaseBusiness,
   ExternalLink,
   Download,
   Sparkles,

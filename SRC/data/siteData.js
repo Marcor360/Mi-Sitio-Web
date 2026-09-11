@@ -42,23 +42,24 @@ export const navigationItems = [
   { id: 'formacion', label: 'Formación' },
   { id: 'certificaciones', label: 'Certificaciones' },
   { id: 'habilidades', label: 'Habilidades' },
+  { id: 'seo-geo', label: 'SEO y GEO' },
   { id: 'contacto', label: 'Contacto' },
 ];
 
 export const heroMetrics = [
   { value: '3+', label: 'años creando sitios, mejoras y soporte TI' },
-  { value: '4', label: 'certificaciones recientes en IA y datos' },
+  { value: String(certificatesSource.certificates.length), label: 'certificaciones y credenciales' },
   { value: '24/7', label: 'mentalidad orientada a rendimiento y servicio' },
 ];
 
 export const profileLead =
-  'Desarrollador web full stack y especialista en TI con enfoque en interfaces claras, performance y soluciones que resuelven problemas reales.';
+  'Especialista en SEO, GEO, UX y desarrollo web con enfoque en ecommerce, analítica digital y soluciones web que resuelven problemas reales.';
 
 export const aboutSummary =
-  'Combino experiencia en desarrollo front-end y back-end con soporte técnico, mantenimiento e integración de procesos. Trabajo con HTML, CSS, Sass, JavaScript, React, Node.js, PHP y SQL, y me adapto rápido a nuevos stacks cuando el proyecto lo exige.';
+  'Marco Antonio Rulfo Castro es especialista en SEO, GEO, UX y desarrollo web en Naucalpan de Juárez, Estado de México. Combino desarrollo, optimización de experiencias y analítica para ecommerce y proyectos digitales.';
 
 export const aboutDetails =
-  'Concluí la Ingeniería en Sistemas Computacionales en la Universidad Tres Culturas (agosto de 2025). He participado en proyectos freelance y en entornos operativos donde soporte, continuidad y ejecución son prioridad. Mi foco está en construir experiencias web responsivas, limpias y sostenibles, con criterio técnico y comunicación clara.';
+  'Trabajo con React, TypeScript, WordPress, Salesforce Commerce Cloud, GA4, Google Tag Manager y Google Search Console. Mi experiencia integra SEO técnico, SEO ecommerce, Generative Engine Optimization, UX, automatización con IA y desarrollo de soluciones web sostenibles.';
 
 export const aboutHighlights = [
   'Concluí la Ingeniería en Sistemas Computacionales en la Universidad Tres Culturas en agosto de 2025.',
@@ -219,6 +220,7 @@ export const contactInfo = {
   phoneRaw: '+525531083353',
   whatsappUrl: 'https://wa.me/525531083353',
   githubUrl: 'https://github.com/Marcor360',
+  linkedinUrl: 'https://mx.linkedin.com/in/marco-antonio-rulfo-castro-bb1867206',
   location: 'Naucalpan, Estado de México',
   referenceCompany: 'USA SHOES',
   referenceLabel: '+52 55 6800 3194',

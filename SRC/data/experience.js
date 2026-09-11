@@ -1,18 +1,18 @@
 export const experienceItems = [
   {
-    id: 'payrolling-tech',
-    role: 'Desarrollador Front-end (React/Next.js)',
-    company: 'Payrolling-Tech',
-    dateRange: 'May 2025 - Actualidad',
+    id: 'diltex-brands',
+    role: 'Especialista UX Web, SEO y GEO',
+    company: 'Diltex brands',
+    dateRange: 'Actualidad',
     summary:
-      'Interfaces para productos de nomina y RRHH, landings internas, APIs, performance, SEO y GA4.',
+      'Optimización de ecommerce mediante SEO técnico y comercial, GEO, UX, analítica y desarrollo web.',
     bullets: [
-      'UI en React/Next + TS + Tailwind para flujos de producto.',
-      'Integracion con APIs REST; colaboracion con backend y QA.',
-      'Componentes reutilizables + accesibilidad + animaciones GSAP.',
-      'Optimizacion de Core Web Vitals y soporte SEO/GA4.',
+      'SEO técnico y comercial, SEO ecommerce y Generative Engine Optimization.',
+      'UX y optimización de conversión en landing pages y experiencias de ecommerce.',
+      'Salesforce Commerce Cloud y Page Designer; medición con GA4, GTM y Search Console.',
+      'Google Shopping, Semrush, Amazon, TikTok Shop, Core Web Vitals y automatización con IA.',
     ],
-    tags: ['React', 'Next.js', 'TypeScript', 'Tailwind', 'GA4', 'GSAP', 'APIs', 'SEO'],
+    tags: ['SEO técnico', 'GEO', 'UX', 'Ecommerce', 'Salesforce Commerce Cloud', 'GA4', 'GTM', 'Semrush'],
     links: [],
   },
   {

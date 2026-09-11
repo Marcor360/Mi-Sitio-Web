@@ -758,6 +758,59 @@ img {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.site-nav__link--active {
+  border-color: rgba(var(--accent-ai-rgb), 0.32);
+  background: rgba(var(--accent-ai-rgb), 0.09);
+  color: var(--text-primary);
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: 0.75rem;
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  font-weight: 700;
+  transform: translateY(-150%);
+  transition: transform 160ms ease;
+
+  &:focus {
+    transform: translateY(0);
+    outline: 3px solid var(--accent-ai);
+    outline-offset: 2px;
+  }
+}
+
+.geo-profile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.geo-profile-card {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.45rem;
+
+  h3,
+  p {
+    margin: 0;
+  }
+
+  h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.05rem;
+  }
+
+  p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+}
+
 .experience-card,
 .education-card,
 .certificate-card,
@@ -1329,7 +1382,8 @@ img {
   .experience-grid,
   .education-grid,
   .certificate-grid,
-  .skills-grid {
+  .skills-grid,
+  .geo-profile-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1408,7 +1462,8 @@ img {
   .experience-card,
   .education-card,
   .certificate-card,
-  .skill-card {
+  .skill-card,
+  .geo-profile-card {
     padding: 1.2rem;
   }
 

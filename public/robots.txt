@@ -1,2 +1,5 @@
 User-agent: *
 Allow: /
+
+# During deployment, scripts/generate-seo-files.mjs adds the absolute sitemap URL.
+# Profile information for language-model consumers: /llms.txt

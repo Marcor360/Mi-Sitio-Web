@@ -1,15 +1,15 @@
 const SEO_DEFAULTS = {
   author: 'Marco Antonio Rulfo Castro',
   description:
-    'Frontend Developer en React y TypeScript. Interfaces con foco en performance, SEO tecnico, GA4, GSAP y experiencias web rapidas, medibles y mantenibles.',
+    'Marco Antonio Rulfo Castro, especialista en SEO, GEO, UX y desarrollo web en Naucalpan, Estado de México. Experiencia en ecommerce, React, WordPress, Salesforce Commerce Cloud, GA4, GTM, IA y optimización web.',
   keywords:
-    'Marco Rulfo, frontend developer, React, TypeScript, Next.js, performance web, SEO tecnico, GA4, GSAP',
+    'Marco Antonio Rulfo Castro, Marco Rulfo, especialista SEO, especialista GEO, SEO técnico, SEO ecommerce, consultor SEO México, desarrollo web México, UX web, Generative Engine Optimization, React, WordPress, Salesforce Commerce Cloud, GA4, Google Tag Manager',
   locale: 'es_MX',
   previewAlt: 'Preview del portafolio de Marco Antonio Rulfo Castro',
   previewImagePath: '/social-preview.svg',
-  siteName: 'Marco Antonio Rulfo Castro | Frontend Developer',
+  siteName: 'Marco Antonio Rulfo Castro | SEO, GEO, UX y Desarrollo Web',
   themeColor: '#FFFFFF',
-  title: 'Marco Antonio Rulfo Castro | Frontend Developer (React/TypeScript)',
+  title: 'Marco Antonio Rulfo Castro | SEO, GEO, UX y Desarrollo Web',
 };
 
 function upsertMeta(attributeName, attributeValue, content) {
@@ -55,13 +55,18 @@ function upsertStructuredData({ canonicalUrl, email, githubUrl, linkedinUrl, loc
       '@type': 'Person',
       email: email ? `mailto:${email}` : undefined,
       image: previewImageUrl,
-      jobTitle: 'Frontend Developer',
+      '@id': `${canonicalUrl}#marco-antonio-rulfo-castro`,
+      alternateName: 'Marco Rulfo',
+      alumniOf: { '@type': 'CollegeOrUniversity', name: 'Universidad Tres Culturas' },
+      description: 'Especialista en SEO, GEO, UX, desarrollo web, ecommerce, analítica digital e inteligencia artificial.',
+      jobTitle: 'Especialista SEO, GEO, UX y Desarrollo Web',
+      knowsAbout: ['SEO', 'Generative Engine Optimization', 'SEO técnico', 'SEO ecommerce', 'UX', 'React', 'TypeScript', 'WordPress', 'Salesforce Commerce Cloud', 'Google Analytics 4', 'Google Tag Manager', 'Google Search Console', 'Inteligencia Artificial'],
       name: SEO_DEFAULTS.author,
       sameAs,
       url: canonicalUrl,
       worksFor: {
         '@type': 'Organization',
-        name: 'Freelance',
+        name: 'Diltex brands',
       },
     },
     {
