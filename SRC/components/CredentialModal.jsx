@@ -158,7 +158,7 @@ function CredentialModal({ credential, applicationText, onClose }) {
           ) : null}
 
           <div className={styles.block}>
-            <p className={styles.label}>Skills</p>
+            <p className={styles.label}>Habilidades</p>
             <div className={styles.tags} aria-label={`Skills de ${credential.title}`}>
               {credential.skills.map((skill) => (
                 <span key={skill} className={styles.tag}>
@@ -169,7 +169,7 @@ function CredentialModal({ credential, applicationText, onClose }) {
           </div>
 
           <div className={styles.block}>
-            <p className={styles.label}>Aplicacion practica</p>
+            <p className={styles.label}>Aplicación práctica</p>
             <p className={styles.value}>{applicationText}</p>
           </div>
 
@@ -198,7 +198,7 @@ function CredentialModal({ credential, applicationText, onClose }) {
           ) : (
             <span className={styles.tooltip} title="Enlace no disponible">
               <button className={styles.disabledButton} type="button" disabled>
-                <span>Sin enlace publico</span>
+                <span>Sin enlace público</span>
                 <Icon name="ExternalLink" size="sm" color="muted" className="icon--trailing" />
               </button>
             </span>

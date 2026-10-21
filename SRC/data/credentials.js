@@ -1,5 +1,16 @@
 export const credentials = [
   {
+    id: 'coursera-innovation-entrepreneurship',
+    title: 'Innovation and Entrepreneurship',
+    issuer: 'Tecnológico de Monterrey · Coursera',
+    date: 'Fecha no especificada',
+    credentialId: 'WVMY046JEAG8',
+    url: 'https://www.coursera.org/account/accomplishments/specialization/certificate/WVMY046JEAG8',
+    category: 'Business',
+    summary: 'Especialización en innovación y emprendimiento del Tecnológico de Monterrey, cursada en Coursera.',
+    skills: ['Innovación', 'Emprendimiento'],
+  },
+  {
     id: 'google-analytics-2026',
     title: 'Google Analytics Certification',
     issuer: 'Google Digital Academy / Skillshop',

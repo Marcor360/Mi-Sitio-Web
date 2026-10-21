@@ -4,26 +4,27 @@ function Header({ menuOpen, navigationItems, onNavigate, onToggle }) {
   const [activeSection, setActiveSection] = useState('inicio');
 
   useEffect(() => {
-    const sections = navigationItems
-      .map(({ id }) => document.getElementById(id))
-      .filter(Boolean);
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-        if (visible) {
-          setActiveSection(visible.target.id);
-        }
-      },
-      { rootMargin: '-18% 0px -62% 0px', threshold: [0.05, 0.25, 0.5] }
-    );
-
+    const sections = navigationItems.map(({ id }) => document.getElementById(id)).filter(Boolean);
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible) setActiveSection(visible.target.id);
+    }, { rootMargin: '-18% 0px -62% 0px', threshold: [0.05, 0.25, 0.5] });
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
   }, [navigationItems]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        onNavigate();
+        document.querySelector('.site-header__toggle')?.focus();
+      }
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [menuOpen, onNavigate]);
 
   return (
     <header className="site-header">
@@ -33,7 +34,7 @@ function Header({ menuOpen, navigationItems, onNavigate, onToggle }) {
           <p className="site-header__role">SEO, GEO, UX y desarrollo web</p>
         </div>
 
-        <nav className={`site-nav${menuOpen ? ' site-nav--open' : ''}`} aria-label="Secciones principales">
+        <nav className={`site-nav${menuOpen ? ' site-nav--open' : ''}`} id="site-navigation" aria-label="Secciones principales">
           {navigationItems.map((item) => (
             <a
               key={item.id}
@@ -55,6 +56,7 @@ function Header({ menuOpen, navigationItems, onNavigate, onToggle }) {
           type="button"
           onClick={onToggle}
           aria-expanded={menuOpen}
+          aria-controls="site-navigation"
           aria-label={menuOpen ? 'Cerrar navegación' : 'Abrir navegación'}
         >
           <span className="site-header__toggle-lines" aria-hidden="true">

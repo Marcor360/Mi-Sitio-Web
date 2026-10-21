@@ -13,6 +13,7 @@ const FILTERS = [
   { id: 'cloud', label: 'Cloud' },
   { id: 'webdev', label: 'Web Dev' },
   { id: 'security', label: 'Seguridad' },
+  { id: 'business', label: 'Innovación' },
 ];
 
 const AI_APPLIED_ITEMS = [
@@ -56,6 +57,8 @@ const getCategoryIcon = (category) => {
 
 const getApplicationText = (credential) => {
   switch (credential.category) {
+    case 'Business':
+      return 'Formación en innovación y emprendimiento para conectar las decisiones de producto con las necesidades del negocio.';
     case 'Cloud':
       return 'Aplica para documentar decisiones, revisar riesgos y mantener criterio al usar herramientas cloud con IA.';
     case 'WebDev':
@@ -74,6 +77,8 @@ const matchesFilter = (credential, filterId) => {
   switch (filterId) {
     case 'ai-data':
       return credential.category === 'AI' || credential.category === 'Data';
+    case 'business':
+      return credential.category === 'Business';
     case 'cloud':
       return credential.category === 'Cloud';
     case 'webdev':
@@ -156,8 +161,7 @@ function CertificationsSection() {
           </p>
           <h2 className={styles.title}>Certificaciones y credenciales verificables</h2>
           <p className={styles.description}>
-            Credenciales seleccionadas (IA, Web Dev, Cloud y seguridad). Filtros y
-            enlaces de verificacion.
+            Formación en innovación, inteligencia artificial, datos, desarrollo web y seguridad. Consulta los detalles y los enlaces de verificación disponibles.
           </p>
         </header>
 
@@ -289,7 +293,7 @@ function CertificationsSection() {
                       ) : (
                         <span className={styles.tooltip} title="Enlace no disponible">
                           <button className={styles.linkButtonDisabled} type="button" disabled>
-                            <span>Sin enlace publico</span>
+                            <span>Sin enlace público</span>
                             <Icon
                               name="ExternalLink"
                               size="sm"
@@ -309,7 +313,7 @@ function CertificationsSection() {
           <div className={`surface-card ${styles.emptyState}`}>
             <p className={styles.emptyTitle}>Sin coincidencias</p>
             <p className={styles.emptyCopy}>
-              Ajusta el filtro o cambia la busqueda para mostrar otras credenciales.
+              Ajusta el filtro o cambia la búsqueda para mostrar otras credenciales.
             </p>
           </div>
         )}
@@ -317,10 +321,9 @@ function CertificationsSection() {
         <div className={`surface-card ${styles.aiBlock}`}>
           <div className={styles.aiHeader}>
             <p className={styles.aiEyebrow}>AI-ready</p>
-            <h3 className={styles.aiTitle}>IA aplicada (sin humo)</h3>
+            <h3 className={styles.aiTitle}>Inteligencia artificial aplicada</h3>
             <p className={styles.aiDescription}>
-              Uso IA como apoyo para productividad, analitica y criterio. No afirmo
-              entrenamiento de modelos ni ML avanzado.
+              Uso herramientas de IA para apoyar la documentación, la productividad y el análisis, con revisión humana y atención al uso responsable de los datos.
             </p>
           </div>
 

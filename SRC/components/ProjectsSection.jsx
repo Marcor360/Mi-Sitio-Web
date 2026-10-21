@@ -60,10 +60,9 @@ function ProjectsSection() {
               <span>PROYECTOS / CASOS</span>
             </span>
           </p>
-          <h2 className={styles.title}>Casos reales con enfoque tecnico y comercial</h2>
+          <h2 className={styles.title}>Proyectos de desarrollo, rendimiento y SEO</h2>
           <p className={styles.description}>
-            Casos seleccionados de producto, freelance y refactor propio, descritos sin inflar
-            resultados ni inventar metricas.
+            Una selección de retos, soluciones y tecnologías aplicadas en producto, proyectos freelance y mi portafolio.
           </p>
         </header>
 

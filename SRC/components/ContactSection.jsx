@@ -10,7 +10,7 @@ import styles from './ContactSection.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const PROJECT_TYPES = ['Landing', 'App', 'Performance', 'SEO', 'GA4', 'Otro'];
+const PROJECT_TYPES = ['Landing', 'App', 'Rendimiento', 'SEO', 'GEO', 'UX', 'GA4', 'Otro'];
 
 const INITIAL_FORM = {
   name: '',
@@ -35,7 +35,7 @@ function validateForm(form) {
   if (!form.email.trim()) {
     errors.email = 'Ingresa tu email.';
   } else if (!EMAIL_PATTERN.test(form.email.trim())) {
-    errors.email = 'Ingresa un email valido.';
+    errors.email = 'Ingresa un email válido.';
   }
 
   if (!form.subject.trim()) {
@@ -272,7 +272,7 @@ function ContactSection({ contactInfo }) {
 
     setPreparedMessage(mailBody);
     window.location.href = mailtoUrl;
-    setStatus({ type: 'success', message: 'Listo: se abrio tu cliente de correo.' });
+    setStatus({ type: 'success', message: 'Correo preparado. Revisa y envía el mensaje en tu aplicación de correo.' });
     setShowCopyMessage(true);
     setForm(INITIAL_FORM);
     setErrors({});
@@ -290,8 +290,7 @@ function ContactSection({ contactInfo }) {
           </p>
           <h2 className={styles.title}>Hablemos de tu proyecto</h2>
           <p className={styles.description}>
-            Respondo en 24-48h. Desarrollo front-end, optimizacion de performance/SEO,
-            analitica GA4 y mejoras UI con animacion.
+            Cuéntame qué necesitas mejorar: SEO, GEO, experiencia de usuario, desarrollo web o medición. El formulario prepara un mensaje que puedes enviar desde tu aplicación de correo.
           </p>
         </header>
 
@@ -338,7 +337,7 @@ function ContactSection({ contactInfo }) {
                 <div className={styles.contactRowStatic}>
                   <span className="icon-inline icon-inline--tight">
                     <Icon name="Phone" size="sm" color="secondary" />
-                    <span>Telefono</span>
+                    <span>Teléfono</span>
                   </span>
                   <a className={styles.contactValue} href={`tel:${contactInfo.phoneRaw}`}>
                     {contactInfo.phoneLabel}
@@ -380,7 +379,7 @@ function ContactSection({ contactInfo }) {
                 <div className={styles.contactRowStatic}>
                   <span className="icon-inline icon-inline--tight">
                     <Icon name="MapPin" size="sm" color="secondary" />
-                    <span>Ubicacion</span>
+                    <span>Ubicación</span>
                   </span>
                   <span className={styles.contactValue}>Naucalpan, Edo. Mex. (Remoto)</span>
                 </div>
@@ -390,7 +389,7 @@ function ContactSection({ contactInfo }) {
             <div className={styles.availabilityCard}>
               <p className={styles.availabilityEyebrow}>Disponibilidad</p>
               <p className={styles.availabilityLine}>Remoto • Proyectos y soporte</p>
-              <p className={styles.availabilityLine}>Tiempo de respuesta: 24-48h</p>
+              <p className={styles.availabilityLine}>SEO, GEO, UX y desarrollo web</p>
             </div>
           </aside>
 
@@ -412,6 +411,8 @@ function ContactSection({ contactInfo }) {
                   <label htmlFor="contact-name">Nombre</label>
                   <input
                     id="contact-name"
+                    autoComplete="name"
+                    required
                     name="name"
                     type="text"
                     value={form.name}
@@ -419,10 +420,11 @@ function ContactSection({ contactInfo }) {
                     onBlur={handleBlur}
                     className={`${styles.input} ${errors.name ? styles.inputError : ''}`}
                     placeholder="Tu nombre"
+                    aria-describedby={errors.name ? 'contact-name-error' : undefined}
                     aria-invalid={errors.name ? 'true' : 'false'}
                   />
                   {errors.name ? (
-                    <p className={styles.errorText} aria-live="polite">
+                    <p id="contact-name-error" className={styles.errorText} aria-live="polite">
                       {errors.name}
                     </p>
                   ) : null}
@@ -432,6 +434,8 @@ function ContactSection({ contactInfo }) {
                   <label htmlFor="contact-email">Email</label>
                   <input
                     id="contact-email"
+                    autoComplete="email"
+                    required
                     name="email"
                     type="email"
                     value={form.email}
@@ -439,10 +443,11 @@ function ContactSection({ contactInfo }) {
                     onBlur={handleBlur}
                     className={`${styles.input} ${errors.email ? styles.inputError : ''}`}
                     placeholder="tu@email.com"
+                    aria-describedby={errors.email ? 'contact-email-error' : undefined}
                     aria-invalid={errors.email ? 'true' : 'false'}
                   />
                   {errors.email ? (
-                    <p className={styles.errorText} aria-live="polite">
+                    <p id="contact-email-error" className={styles.errorText} aria-live="polite">
                       {errors.email}
                     </p>
                   ) : null}
@@ -452,17 +457,19 @@ function ContactSection({ contactInfo }) {
                   <label htmlFor="contact-subject">Asunto</label>
                   <input
                     id="contact-subject"
+                    required
                     name="subject"
                     type="text"
                     value={form.subject}
                     onChange={handleFieldChange}
                     onBlur={handleBlur}
                     className={`${styles.input} ${errors.subject ? styles.inputError : ''}`}
-                    placeholder="Cuentame que necesitas"
+                    placeholder="Cuéntame qué necesitas"
+                    aria-describedby={errors.subject ? 'contact-subject-error' : undefined}
                     aria-invalid={errors.subject ? 'true' : 'false'}
                   />
                   {errors.subject ? (
-                    <p className={styles.errorText} aria-live="polite">
+                    <p id="contact-subject-error" className={styles.errorText} aria-live="polite">
                       {errors.subject}
                     </p>
                   ) : null}
@@ -477,7 +484,7 @@ function ContactSection({ contactInfo }) {
                     onChange={handleFieldChange}
                     className={styles.select}
                   >
-                    <option value="">Selecciona una opcion</option>
+                    <option value="">Selecciona una opción</option>
                     {PROJECT_TYPES.map((type) => (
                       <option key={type} value={type}>
                         {type}
@@ -495,25 +502,27 @@ function ContactSection({ contactInfo }) {
                       checked={form.hasDeadline}
                       onChange={handleFieldChange}
                     />
-                    <span>Tengo deadline</span>
+                    <span>Tengo una fecha límite</span>
                   </label>
                 </div>
 
                 {form.hasDeadline ? (
                   <div className={`${styles.field} ${styles.fieldFull}`}>
-                    <label htmlFor="contact-deadline">Deadline</label>
+                    <label htmlFor="contact-deadline">Fecha límite</label>
                     <input
                       id="contact-deadline"
+                      required
                       name="deadline"
                       type="date"
                       value={form.deadline}
                       onChange={handleFieldChange}
                       onBlur={handleBlur}
                       className={`${styles.input} ${errors.deadline ? styles.inputError : ''}`}
+                      aria-describedby={errors.deadline ? 'contact-deadline-error' : undefined}
                       aria-invalid={errors.deadline ? 'true' : 'false'}
                     />
                     {errors.deadline ? (
-                      <p className={styles.errorText} aria-live="polite">
+                      <p id="contact-deadline-error" className={styles.errorText} aria-live="polite">
                         {errors.deadline}
                       </p>
                     ) : null}
@@ -524,16 +533,18 @@ function ContactSection({ contactInfo }) {
                   <label htmlFor="contact-message">Mensaje</label>
                   <textarea
                     id="contact-message"
+                    required
                     name="message"
                     value={form.message}
                     onChange={handleFieldChange}
                     onBlur={handleBlur}
                     className={`${styles.textarea} ${errors.message ? styles.inputError : ''}`}
                     placeholder="Describe tu proyecto, mejora o necesidad"
+                    aria-describedby={errors.message ? 'contact-message-error' : undefined}
                     aria-invalid={errors.message ? 'true' : 'false'}
                   />
                   {errors.message ? (
-                    <p className={styles.errorText} aria-live="polite">
+                    <p id="contact-message-error" className={styles.errorText} aria-live="polite">
                       {errors.message}
                     </p>
                   ) : null}
@@ -563,7 +574,7 @@ function ContactSection({ contactInfo }) {
                     rel="noreferrer"
                     onClick={() => handleWhatsAppClick('whatsapp_secondary')}
                   >
-                    Prefieres WhatsApp? Abrir chat
+                    ¿Prefieres WhatsApp? Abrir chat
                   </a>
                   <button className={styles.secondaryButton} type="button" onClick={handleCopyEmail}>
                     O copia mi email
@@ -573,7 +584,7 @@ function ContactSection({ contactInfo }) {
                 {showCopyMessage ? (
                   <div className={styles.fallbackBox}>
                     <p className={styles.fallbackCopy}>
-                      Si tu cliente no se abrio, puedes copiar el mensaje completo.
+                      Si tu aplicación de correo no se abrió, puedes copiar el mensaje completo.
                     </p>
                     <button
                       className={styles.fallbackButton}

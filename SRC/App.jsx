@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Header from './components/Header.jsx';
 import Hero from './components/Hero.jsx';
 import SectionHeading from './components/SectionHeading.jsx';
@@ -24,27 +24,12 @@ import experienceItems from './data/experience.js';
 import { analytics } from './lib/analytics.js';
 import { useGsapAnimations } from './hooks/useGsapAnimations.js';
 import { generateCvPdf } from './utils/generateCv.js';
-import { applyDefaultSeo } from './utils/seo.js';
 import aboutPortrait from './img/Marco-Rulfo-2.jpg';
 
-const CertificationsSection = lazy(() => import('./components/CertificationsSection.jsx'));
-const SkillsSection = lazy(() => import('./components/SkillsSection.jsx'));
-const ContactSection = lazy(() => import('./components/ContactSection.jsx'));
-
-function SectionFallback({ minHeight = 360 }) {
-  return (
-    <section className="section" aria-hidden="true">
-      <div className="container">
-        <div
-          className="surface-card"
-          style={{
-            minHeight: `${minHeight}px`,
-          }}
-        />
-      </div>
-    </section>
-  );
-}
+import CertificationsSection from './components/CertificationsSection.jsx';
+import SkillsSection from './components/SkillsSection.jsx';
+import ContactSection from './components/ContactSection.jsx';
+import ServicesSection from './components/ServicesSection.jsx';
 
 function App() {
   const appRef = useRef(null);
@@ -53,15 +38,6 @@ function App() {
   const [isGeneratingCv, setIsGeneratingCv] = useState(false);
 
   useGsapAnimations(appRef);
-
-  useEffect(() => {
-    applyDefaultSeo({
-      email: contactInfo.email,
-      githubUrl: contactInfo.githubUrl,
-      linkedinUrl: contactInfo.linkedinUrl,
-      location: contactInfo.location,
-    });
-  }, []);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
@@ -128,6 +104,8 @@ function App() {
           onNavigate={handleNavClick}
         />
 
+        <ServicesSection />
+
         <section id="sobre-mi" className="section">
           <div className="container">
             <SectionHeading
@@ -189,7 +167,7 @@ function App() {
               eyebrow="Formación"
               iconName="GraduationCap"
               title="Base académica y actualización constante"
-              description="Se añadió una sección real de formación para que la navegación ya no apunte a un ancla rota."
+              description="Ingeniería en Sistemas Computacionales y formación continua en inteligencia artificial, datos y desarrollo web."
             />
 
             <div className="education-grid">
@@ -208,17 +186,11 @@ function App() {
           </div>
         </section>
 
-        <Suspense fallback={<SectionFallback minHeight={440} />}>
           <CertificationsSection />
-        </Suspense>
 
-        <Suspense fallback={<SectionFallback minHeight={520} />}>
           <SkillsSection />
-        </Suspense>
 
-        <Suspense fallback={<SectionFallback minHeight={520} />}>
           <ContactSection contactInfo={contactInfo} />
-        </Suspense>
       </main>
 
       <footer className="site-footer">

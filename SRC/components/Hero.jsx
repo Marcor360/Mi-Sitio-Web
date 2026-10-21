@@ -4,16 +4,17 @@ import Icon from './ui/Icon.jsx';
 import { analytics } from '../lib/analytics.js';
 import styles from './Hero.module.css';
 import heroPortrait from '../img/Marco-Rulfo.jpg';
+import { professionalProfile } from '../data/siteConfig.js';
 
 const HERO_COPY = {
   eyebrow: 'DISPONIBLE PARA PROYECTOS WEB \u2022 REMOTO (MX)',
-  title: 'SEO, GEO, UX',
-  titleAccent: 'y Desarrollo Web',
+  title: professionalProfile.fullName,
+  titleAccent: 'SEO, GEO y desarrollo web en México',
   description:
     'Especialista en SEO, GEO, UX y desarrollo web para ecommerce. Trabajo con React, WordPress, Salesforce Commerce Cloud, GA4, GTM e IA para crear experiencias medibles y útiles.',
   badges: [
     'SEO técnico',
-    'GEO SEO',
+    'Visibilidad en buscadores e IA',
     'UX web',
     'GA4 / GTM',
   ],
@@ -204,7 +205,7 @@ function Hero({
             <img
               className={styles.image}
               src={heroPortrait}
-              alt="Marco Rulfo, especialista en SEO, GEO, UX y desarrollo web"
+              alt="Marco Antonio Rulfo Castro, especialista en SEO, GEO, UX y desarrollo web"
               width="960"
               height="1280"
               loading="eager"

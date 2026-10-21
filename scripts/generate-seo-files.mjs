@@ -1,51 +1,23 @@
-import { existsSync, rmSync, writeFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { writeFile, rm } from 'node:fs/promises';
+import { publicSiteUrl } from '../SRC/data/siteConfig.js';
 
-function normalizeSiteUrl(value) {
-  if (!value) {
-    return '';
+export function getSiteUrl(variables = process.env) {
+  const raw = variables.SITE_URL || variables.URL || variables.DEPLOY_PRIME_URL || publicSiteUrl;
+  if (!raw) return '';
+  const parsed = new URL(raw);
+  if (!['https:', 'http:'].includes(parsed.protocol) || parsed.username || parsed.password || parsed.search || parsed.hash) {
+    throw new Error('SITE_URL debe ser una URL pública HTTP(S), sin credenciales, parámetros ni fragmentos.');
   }
-
-  try {
-    const parsedUrl = new URL(value);
-    const normalizedPath = parsedUrl.pathname.replace(/\/+$/, '');
-    return `${parsedUrl.origin}${normalizedPath}`;
-  } catch {
-    return '';
-  }
+  if (parsed.pathname !== '/') throw new Error('Este sitio se despliega en la raíz del dominio; SITE_URL no admite subrutas.');
+  return parsed.origin;
 }
 
-const distDir = resolve(process.cwd(), 'dist');
-const robotsPath = resolve(distDir, 'robots.txt');
-const sitemapPath = resolve(distDir, 'sitemap.xml');
-const siteUrl = normalizeSiteUrl(process.env.SITE_URL || process.env.URL || process.env.DEPLOY_PRIME_URL || '');
-
-if (!existsSync(distDir)) {
-  process.exit(0);
-}
-
-const robotsContent = siteUrl
-  ? `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n# Profile information for language-model consumers\n# ${siteUrl}/llms.txt\n`
-  : 'User-agent: *\nAllow: /\n\n# The deployment URL is required to publish an absolute Sitemap directive.\n';
-
-writeFileSync(robotsPath, robotsContent, 'utf8');
-
-if (!siteUrl) {
-  if (existsSync(sitemapPath)) {
-    rmSync(sitemapPath);
+export async function generateSeoFiles(siteUrl) {
+  await writeFile('dist/robots.txt', `User-agent: *\nAllow: /\n${siteUrl ? `\nSitemap: ${siteUrl}/sitemap.xml\n` : ''}`);
+  if (!siteUrl) {
+    await rm('dist/sitemap.xml', { force: true });
+    return;
   }
-
-  process.exit(0);
+  const xmlUrl = siteUrl.replaceAll('&', '&amp;').replaceAll('<', '&lt;');
+  await writeFile('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>${xmlUrl}/</loc></url></urlset>\n`);
 }
-
-const sitemapContent =
-  `<?xml version="1.0" encoding="UTF-8"?>\n` +
-  `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-  `  <url>\n` +
-  `    <loc>${siteUrl}/</loc>\n` +
-  `    <changefreq>monthly</changefreq>\n` +
-  `    <priority>1.0</priority>\n` +
-  `  </url>\n` +
-  `</urlset>\n`;
-
-writeFileSync(sitemapPath, sitemapContent, 'utf8');

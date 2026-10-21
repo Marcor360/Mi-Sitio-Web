@@ -82,7 +82,7 @@ export async function generateCvPdf({
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(11);
   doc.setTextColor(47, 143, 255);
-  doc.text('Desarrollador Web Full Stack y Especialista en TI', MARGIN_X, cursorY + 7);
+  doc.text('Especialista en SEO, GEO, UX y Desarrollo Web', MARGIN_X, cursorY + 7);
 
   doc.setFontSize(9.5);
   doc.setTextColor(77, 95, 127);
