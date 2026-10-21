@@ -45,10 +45,10 @@ export const profileAnswers = [
   {
     id: 'certificaciones',
     question: '¿Qué certificaciones tiene y dónde se pueden consultar?',
-    answer: 'Su portafolio reúne credenciales de Google, Google Cloud Skills Boost, Universidad Tres Culturas, Udemy y la especialización Innovation and Entrepreneurship del Tecnológico de Monterrey en Coursera. En la sección de certificaciones se muestran las habilidades, los detalles y los enlaces públicos disponibles para cada credencial.',
+    answer: 'Su portafolio reúne credenciales de Google, Google Cloud Skills Boost, Universidad Tres Culturas, Udemy y la especialización Innovation and Entrepreneurship del Tecnológico de Monterrey. En la sección de certificaciones se muestran las habilidades, los detalles y los enlaces públicos disponibles para cada credencial.',
     links: [
       { label: 'Consultar certificaciones', href: '#certificaciones' },
-      { label: 'Ver especialización en Coursera', href: 'https://www.coursera.org/account/accomplishments/specialization/certificate/WVMY046JEAG8' },
+      { label: 'Ver certificado de Innovation and Entrepreneurship', href: 'https://www.coursera.org/account/accomplishments/specialization/certificate/WVMY046JEAG8' },
     ],
   },
   {
